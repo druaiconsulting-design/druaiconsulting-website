@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRU AI Leadership Ecosystem™ — Frameworks</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A2342;
+    --navy-dark: #061829;
+    --gold: #D4AF37;
+    --gold-light: rgba(212,175,55,0.12);
+    --gold-border: rgba(212,175,55,0.25);
+    --magenta: #C2185B;
+    --magenta-light: rgba(194,24,91,0.12);
+    --blue: #1E88E5;
+    --text: #E6E6E6;
+    --text-muted: rgba(230,230,230,0.55);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--navy); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(6,24,41,0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gold-border);
+    padding: 0 2rem; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  nav img { height: 36px; width: auto; }
+  .nav-cta {
+    background: var(--magenta); color: #fff;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.5rem 1.25rem; border-radius: 4px; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8rem 2rem 5rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.06) 0%, transparent 65%),
+                radial-gradient(ellipse at 80% 80%, rgba(194,24,91,0.05) 0%, transparent 50%);
+  }
+  .eyebrow {
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.25rem; position: relative;
+    opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1;
+    color: #fff; margin-bottom: 1.5rem; max-width: 800px; position: relative;
+    opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: clamp(0.88rem, 1.5vw, 1rem); line-height: 1.8;
+    color: var(--text-muted); max-width: 580px; margin-bottom: 2.5rem; position: relative;
+    opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; position: relative;
+    opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+  .btn-mag {
+    background: var(--magenta); color: #fff;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.95rem 2rem; border-radius: 6px; text-decoration: none;
+    transition: all 0.2s; border: none; cursor: pointer;
+  }
+  .btn-mag:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(194,24,91,0.35); }
+  .btn-outline {
+    background: transparent; color: var(--gold);
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.95rem 2rem; border-radius: 6px; text-decoration: none;
+    transition: all 0.2s; border: 1px solid rgba(212,175,55,0.4);
+  }
+  .btn-outline:hover { background: var(--gold-light); }
+
+  /* ── Pathway ── */
+  .pathway {
+    padding: 4rem 2rem; background: var(--navy-dark); text-align: center;
+    border-top: 1px solid var(--gold-border); border-bottom: 1px solid var(--gold-border);
+  }
+  .pathway .eyebrow { animation: none; opacity: 1; }
+  .pathway h2 {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem);
+    color: #fff; font-weight: 700; margin-bottom: 0.875rem;
+  }
+  .pathway p { font-size: 0.88rem; line-height: 1.8; color: var(--text-muted); max-width: 580px; margin: 0 auto 2.5rem; }
+  .pathway-steps { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .ps { padding: 0.6rem 1.1rem; border-bottom: 2px solid var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; color: var(--gold); }
+  .ps.mag { border-color: var(--magenta); color: var(--magenta); }
+  .pa { color: rgba(212,175,55,0.4); margin: 0 3px; font-size: 0.9rem; }
+
+  /* ── Journey ── */
+  .journey { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
+  .sec-eyebrow { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 0.75rem; }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: #fff; font-weight: 700; text-align: center; margin-bottom: 0.875rem; }
+  .sec-sub { font-size: 0.88rem; line-height: 1.8; color: var(--text-muted); max-width: 520px; margin: 0 auto 3rem; text-align: center; }
+  .journey-steps { display: flex; flex-direction: column; gap: 1.1rem; }
+  .jstep {
+    display: flex; align-items: flex-start; gap: 1.1rem;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border);
+    border-radius: 10px; padding: 1.5rem; transition: border-color 0.2s;
+  }
+  .jstep:hover { border-color: rgba(212,175,55,0.5); }
+  .jnum {
+    width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.88rem;
+  }
+  .jnum.g { background: var(--gold); color: #3a2e00; }
+  .jnum.m { background: var(--magenta); color: #fff; }
+  .jstep h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.92rem; color: #fff; margin-bottom: 0.4rem; }
+  .jstep p { font-size: 0.8rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .jtag {
+    display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.08em; padding: 2px 9px; border-radius: 20px;
+    background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold-border);
+  }
+  .jtag.m { background: var(--magenta-light); color: var(--magenta); border-color: rgba(194,24,91,0.3); }
+
+  /* ── Frameworks ── */
+  .frameworks { padding: 5rem 2rem; background: var(--navy-dark); }
+  .fw-inner { max-width: 1100px; margin: 0 auto; }
+  .fw-grid { display: flex; flex-direction: column; gap: 3rem; margin-top: 3.5rem; }
+
+  .fw-card {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border);
+    border-radius: 14px; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr;
+    transition: border-color 0.3s;
+  }
+  .fw-card:hover { border-color: rgba(212,175,55,0.5); }
+
+  /* Image side */
+  .fw-image-side { position: relative; min-height: 320px; overflow: hidden; }
+  .fw-image-side img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .fw-image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, transparent 60%, rgba(10,35,66,0.6));
+  }
+  .fw-price-badge {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(10,35,66,0.92); border: 1px solid rgba(212,175,55,0.55);
+    border-radius: 10px; padding: 0.6rem 1.1rem;
+    backdrop-filter: blur(4px); text-align: right;
+  }
+  .fw-price-badge .price {
+    font-family: 'Playfair Display', serif; color: var(--gold);
+    font-weight: 700; font-size: 1.5rem; line-height: 1;
+  }
+  .fw-price-badge .price-sub {
+    font-family: 'Montserrat', sans-serif; color: rgba(255,255,255,0.45);
+    font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px;
+  }
+  .fw-category-badge {
+    position: absolute; bottom: 14px; left: 14px;
+    font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 4px;
+    background: rgba(10,35,66,0.88);
+  }
+
+  /* Content side */
+  .fw-content { padding: 2rem; display: flex; flex-direction: column; }
+  .fw-name { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .fw-tagline { font-family: 'Montserrat', sans-serif; color: var(--text-muted); font-size: 0.65rem; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+  .fw-theme { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-style: italic; color: var(--gold); margin-bottom: 1rem; opacity: 0.85; }
+  .fw-intro { font-size: 0.8rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 1.1rem; }
+  .fw-pillars { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.1rem; flex: 1; }
+  .fw-pillar { display: flex; align-items: flex-start; gap: 0.5rem; }
+  .fw-pillar-dot { font-size: 0.65rem; margin-top: 2px; flex-shrink: 0; }
+  .fw-pillar strong { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.76rem; color: #fff; }
+  .fw-pillar span { font-size: 0.74rem; color: var(--text-muted); }
+  .fw-ideal {
+    background: rgba(212,175,55,0.05); border: 1px solid var(--gold-border);
+    border-radius: 8px; padding: 0.75rem 0.875rem; margin-bottom: 1rem;
+  }
+  .fw-ideal-lbl { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
+  .fw-ideal p { font-size: 0.75rem; line-height: 1.6; color: var(--text-muted); }
+
+  /* Pricing block */
+  .fw-pricing {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--gold-border);
+    border-radius: 8px; padding: 0.875rem; margin-bottom: 1rem;
+  }
+  .fw-pricing-lbl { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .fw-pricing-row { display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0; border-top: 0.5px solid var(--gold-border); }
+  .fw-pricing-row .label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(230,230,230,0.55); }
+  .fw-pricing-row .val { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: rgba(230,230,230,0.7); }
+
+  .fw-btn {
+    display: block; text-align: center; background: var(--magenta); color: #fff;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.875rem; border-radius: 6px; text-decoration: none; transition: opacity 0.2s;
+  }
+  .fw-btn:hover { opacity: 0.85; }
+
+  /* Reverse layout for alternating cards */
+  .fw-card.reverse { grid-template-columns: 1fr 1fr; }
+  .fw-card.reverse .fw-image-side { order: 2; }
+  .fw-card.reverse .fw-image-side .fw-image-overlay {
+    background: linear-gradient(to left, transparent 60%, rgba(10,35,66,0.6));
+  }
+  .fw-card.reverse .fw-content { order: 1; }
+
+  /* ── CTA ── */
+  .cta-sec {
+    padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-sec::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.07) 0%, transparent 65%);
+  }
+  .cta-sec h2 {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.75rem);
+    color: #fff; font-weight: 700; margin-bottom: 1rem; position: relative;
+  }
+  .cta-sec p { font-size: 0.9rem; line-height: 1.8; color: var(--text-muted); max-width: 480px; margin: 0 auto 2.5rem; position: relative; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  footer { text-align: center; padding: 1.5rem; border-top: 1px solid var(--gold-border); font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.2); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .fw-card, .fw-card.reverse { grid-template-columns: 1fr; }
+    .fw-card.reverse .fw-image-side { order: 1; }
+    .fw-card.reverse .fw-content { order: 2; }
+    .fw-image-side { min-height: 220px; }
+    .fw-image-overlay { background: linear-gradient(to top, rgba(10,35,66,0.7) 0%, transparent 60%) !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663512997684/3v5s3xyNxqpHhQbaaqucFJ/dru-clear-logo-transparent_fdbc9d32.png" alt="DRU CLEAR™" />
+  <a href="https://assessment.druaiconsulting.com" class="nav-cta">Take the Free Assessment →</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <p class="eyebrow">DRU AI Leadership Ecosystem™</p>
+  <h1>Every Transformation Begins<br>with <span>Clarity.</span></h1>
+  <p>Four proprietary frameworks designed to move organizations from AI uncertainty to AI authority. Built by DeAnna R. Upshaw — AI Authority, Strategic Advisor, and Executive Coach.</p>
+  <div class="hero-btns">
+    <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free Assessment →</a>
+    <a href="#frameworks" class="btn-outline">Explore the Frameworks ↓</a>
+  </div>
+</section>
+
+<!-- Pathway -->
+<section class="pathway">
+  <p class="eyebrow">The DRU AI Transformation Pathway™</p>
+  <h2>Every client walks the same five stages.</h2>
+  <p>No shortcuts. No skipped steps. This is the proven sequence that moves organizations from awareness to full AI activation.</p>
+  <div class="pathway-steps">
+    <span class="ps">Discover</span><span class="pa">›</span>
+    <span class="ps">Diagnose</span><span class="pa">›</span>
+    <span class="ps">Design</span><span class="pa">›</span>
+    <span class="ps mag">Deploy</span><span class="pa">›</span>
+    <span class="ps mag">Dominate</span>
+  </div>
+</section>
+
+<!-- Journey -->
+<section class="journey">
+  <p class="sec-eyebrow">The Client Journey</p>
+  <h2 class="sec-title">How transformation actually works.</h2>
+  <p class="sec-sub">Understanding where you are determines where to start. Every client walks this path.</p>
+  <div class="journey-steps">
+    <div class="jstep">
+      <div class="jnum g">1</div>
+      <div>
+        <h3>Take the Free Assessment</h3>
+        <p>The DRU CLEAR™ AI Readiness Scorecard reveals your gaps across all 4 frameworks and gives you a personalized readiness score in 3 minutes. This is where your transformation begins.</p>
+        <span class="jtag">Pathway Stage: Discover</span>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jnum g">2</div>
+      <div>
+        <h3>Complete Your Diagnostic</h3>
+        <p>Your scorecard shows you what. The diagnostic reveals why — and what to do next. DeAnna conducts a deep-dive session and delivers a comprehensive AI strategy report tailored to your organization. Choose the Strategic Diagnostic ($3,497) or Executive Diagnostic ($4,997).</p>
+        <span class="jtag">Pathway Stages: Diagnose + Design</span>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jnum m">3</div>
+      <div>
+        <h3>Activate Your Frameworks</h3>
+        <p>Based on your diagnostic, you and DeAnna select the framework or ecosystem engagement that targets your highest-impact opportunity. Individual frameworks start at $6,000. The Full Ecosystem is $26,000.</p>
+        <span class="jtag m">Pathway Stages: Deploy + Dominate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Frameworks -->
+<section class="frameworks" id="frameworks">
+  <div class="fw-inner">
+    <p class="sec-eyebrow">The Four Frameworks</p>
+    <h2 class="sec-title">Original IP. Proven Results.</h2>
+    <p class="sec-sub" style="text-align:center;margin-left:auto;margin-right:auto;">Each framework addresses a distinct dimension of AI leadership transformation. Together they form a complete ecosystem.</p>
+
+    <div class="fw-grid">
+
+      <!-- DRU CLEAR™ -->
+      <div class="fw-card">
+        <div class="fw-image-side">
+          <img src="https://raw.githubusercontent.com/druaiconsulting-design/dru-clear-app/main/client/public/DRU%20CLEAR%20.png" alt="DRU CLEAR™" />
+          <div class="fw-image-overlay"></div>
+          <div class="fw-price-badge">
+            <div class="price">$7,500</div>
+            <div class="price-sub">Virtual · 3 sessions</div>
+          </div>
+          <span class="fw-category-badge" style="color:#D4AF37;border:1px solid rgba(212,175,55,0.5);">Flagship · The Connector</span>
+        </div>
+        <div class="fw-content">
+          <div class="fw-name">DRU CLEAR™</div>
+          <div class="fw-tagline">Align for AI Execution</div>
+          <p class="fw-intro">The flagship framework that connects all four into a unified, executable strategy. A complete AI readiness diagnosis, strategy design, and execution alignment system built for organizations ready to lead in the AI era.</p>
+          <div class="fw-pillars">
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#D4AF37;">✦</span><div><strong>Clarity</strong><span> — Define your AI vision with precision and connect it to business strategy.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#D4AF37;">✦</span><div><strong>Leadership</strong><span> — Ensure leaders have AI fluency and conviction to drive transformation.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#D4AF37;">✦</span><div><strong>Execution</strong><span> — Close the gap between strategy and action with the right capabilities.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#D4AF37;">✦</span><div><strong>Alignment</strong><span> — Unify your organization around a single AI strategy. Break down silos.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#D4AF37;">✦</span><div><strong>Results</strong><span> — Define, measure, and demonstrate ROI at every level.</span></div></div>
+          </div>
+          <div class="fw-pricing">
+            <div class="fw-pricing-lbl">Investment</div>
+            <div class="fw-pricing-row"><span class="label">Framework Investment</span><span class="val" style="color:#D4AF37;font-weight:600;">$7,500</span></div>
+            <div class="fw-pricing-row"><span class="label">Sessions</span><span class="val">3 sessions · 90 min · Virtual</span></div>
+            <div class="fw-pricing-row"><span class="label">Required First Step</span><span class="val">Diagnostic session (SD or ED)</span></div>
+          </div>
+          <a href="https://assessment.druaiconsulting.com" class="fw-btn">Start with the Free Assessment →</a>
+        </div>
+      </div>
+
+      <!-- 5C Cultural DNA™ -->
+      <div class="fw-card reverse">
+        <div class="fw-image-side">
+          <img src="https://raw.githubusercontent.com/druaiconsulting-design/dru-clear-app/main/client/public/5C%20.png" alt="5C Cultural DNA™" />
+          <div class="fw-image-overlay"></div>
+          <div class="fw-price-badge">
+            <div class="price">$6,000</div>
+            <div class="price-sub">Virtual · 3 sessions</div>
+          </div>
+          <span class="fw-category-badge" style="color:#C2185B;border:1px solid rgba(194,24,91,0.5);">Culture</span>
+        </div>
+        <div class="fw-content">
+          <div class="fw-name">5C Cultural DNA™</div>
+          <div class="fw-tagline">Communication · Connection · Collaboration · Coaching · Culture Transformation</div>
+          <p class="fw-theme">Learn IT. Live IT. Lead IT. Leadership Thinking with AI.</p>
+          <p class="fw-intro">Most organizations don't have an AI problem — they have a culture problem. This framework helps organizations discover and address cultural dysfunction, silos, and communication breakdowns that silently block progress.</p>
+          <div class="fw-pillars">
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Communication</strong><span> — How leaders create clarity around AI strategy at every level.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Connection</strong><span> — Building trust and meaningful relationships across leadership.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Collaboration</strong><span> — Breaking down silos and creating cross-functional AI alignment.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Coaching</strong><span> — Leading teams through uncertainty, change, and new AI capabilities.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Culture Transformation</strong><span> — From resistance to ownership, confidence, and strategic adoption.</span></div></div>
+          </div>
+          <div class="fw-pricing">
+            <div class="fw-pricing-lbl">Investment</div>
+            <div class="fw-pricing-row"><span class="label">Framework Investment</span><span class="val" style="color:#D4AF37;font-weight:600;">$6,000</span></div>
+            <div class="fw-pricing-row"><span class="label">Sessions</span><span class="val">3 sessions · 90 min · Virtual</span></div>
+            <div class="fw-pricing-row"><span class="label">Required First Step</span><span class="val">Diagnostic session (SD or ED)</span></div>
+          </div>
+          <a href="https://assessment.druaiconsulting.com" class="fw-btn">Start with the Free Assessment →</a>
+        </div>
+      </div>
+
+      <!-- 5D Leadership™ -->
+      <div class="fw-card">
+        <div class="fw-image-side">
+          <img src="https://raw.githubusercontent.com/druaiconsulting-design/dru-clear-app/main/client/public/5D%20Leadership%20visual%20model%20design.png" alt="5D Leadership™" />
+          <div class="fw-image-overlay"></div>
+          <div class="fw-price-badge">
+            <div class="price">$6,500</div>
+            <div class="price-sub">Virtual · 3 sessions</div>
+          </div>
+          <span class="fw-category-badge" style="color:#1E88E5;border:1px solid rgba(30,136,229,0.5);">Leadership</span>
+        </div>
+        <div class="fw-content">
+          <div class="fw-name">5D Leadership™</div>
+          <div class="fw-tagline">Transformational Leadership Across Five Critical Dimensions</div>
+          <p class="fw-intro">Most leadership development programs focus on skills. 5D Leadership™ focuses on the whole leader — building from the inside out across five critical dimensions that determine whether leadership transforms an organization or just manages it.</p>
+          <div class="fw-pillars">
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#1E88E5;">✦</span><div><strong>I. Self</strong><span> — Personal mastery. How a leader thinks, decides, and shows up.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#1E88E5;">✦</span><div><strong>II. People</strong><span> — Relational intelligence. How a leader develops the individuals around them.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#1E88E5;">✦</span><div><strong>III. Team</strong><span> — Collective effectiveness. Building cohesion, trust, and high performance.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#1E88E5;">✦</span><div><strong>IV. Organization</strong><span> — Systemic strength. Aligning culture, strategy, and operations.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#1E88E5;">✦</span><div><strong>V. Visionary</strong><span> — Strategic impact. Positioning the organization to lead — not follow.</span></div></div>
+          </div>
+          <div class="fw-pricing">
+            <div class="fw-pricing-lbl">Investment</div>
+            <div class="fw-pricing-row"><span class="label">Framework Investment</span><span class="val" style="color:#D4AF37;font-weight:600;">$6,500</span></div>
+            <div class="fw-pricing-row"><span class="label">Sessions</span><span class="val">3 sessions · 90 min · Virtual</span></div>
+            <div class="fw-pricing-row"><span class="label">Required First Step</span><span class="val">Diagnostic session (SD or ED)</span></div>
+          </div>
+          <a href="https://assessment.druaiconsulting.com" class="fw-btn">Start with the Free Assessment →</a>
+        </div>
+      </div>
+
+      <!-- AI Sales Mastery™ -->
+      <div class="fw-card reverse">
+        <div class="fw-image-side">
+          <img src="https://raw.githubusercontent.com/druaiconsulting-design/dru-clear-app/main/client/public/AI%20Sales%20Mastery%20framework%20infographic.png" alt="AI Sales Mastery™" />
+          <div class="fw-image-overlay"></div>
+          <div class="fw-price-badge">
+            <div class="price">$6,000</div>
+            <div class="price-sub">Virtual · 3 sessions</div>
+          </div>
+          <span class="fw-category-badge" style="color:#C2185B;border:1px solid rgba(194,24,91,0.5);">Sales</span>
+        </div>
+        <div class="fw-content">
+          <div class="fw-name">AI Sales Mastery™</div>
+          <div class="fw-tagline">DISC Behavioral Insights + AI for Revenue Acceleration</div>
+          <p class="fw-theme">Personality Mastery + AI = Sales That Feel Natural, Trusted, and Effective.</p>
+          <p class="fw-intro">The future of sales is not louder — it's smarter. AI Sales Mastery™ combines the proven power of DISC behavioral insights with AI to create a sales approach that feels natural, builds trust, and accelerates revenue without pressure tactics.</p>
+          <div class="fw-pillars">
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Hyper-Personalized Outreach</strong><span> — Right person, right message, right time — every time.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Speak Your Client's Decision Language</strong><span> — DISC gives you the map. AI gives you the speed.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Predict Objections Before They Happen</strong><span> — Stop reacting. Start anticipating.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Close with Confidence, Not Pressure</strong><span> — Closing becomes a natural next step.</span></div></div>
+            <div class="fw-pillar"><span class="fw-pillar-dot" style="color:#C2185B;">✦</span><div><strong>Build Long-Term Client Relationships</strong><span> — Not a transaction — a transformation of how clients see you.</span></div></div>
+          </div>
+          <div class="fw-pricing">
+            <div class="fw-pricing-lbl">Investment</div>
+            <div class="fw-pricing-row"><span class="label">Framework Investment</span><span class="val" style="color:#D4AF37;font-weight:600;">$6,000</span></div>
+            <div class="fw-pricing-row"><span class="label">Sessions</span><span class="val">3 sessions · 90 min · Virtual</span></div>
+            <div class="fw-pricing-row"><span class="label">Required First Step</span><span class="val">Diagnostic session (SD or ED)</span></div>
+          </div>
+          <a href="https://assessment.druaiconsulting.com" class="fw-btn">Start with the Free Assessment →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <h2>Every journey starts<br>with the assessment.</h2>
+  <p>Discover your gaps. See where you are. Define where you are destined to be. It takes 3 minutes and it's completely free.</p>
+  <div class="cta-btns">
+    <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free Assessment →</a>
+  </div>
+</section>
+
+<footer>© 2026 DRU CLEAR™ · All Rights Reserved · DRU AI Consulting</footer>
+
+</body>
+</html>
