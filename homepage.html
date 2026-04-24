@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRU AI Consulting — Where Leadership Meets AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A2342;
+    --navy-dark: #061829;
+    --navy-mid: #0d2d56;
+    --gold: #D4AF37;
+    --gold-light: rgba(212,175,55,0.10);
+    --gold-border: rgba(212,175,55,0.22);
+    --magenta: #C2185B;
+    --magenta-light: rgba(194,24,91,0.10);
+    --text: #E6E6E6;
+    --text-muted: rgba(230,230,230,0.55);
+    --text-dim: rgba(230,230,230,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: #0A2342 !important; }
+  body { background: #0A2342 !important; color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  html, body, div#root, div.ghl-page, div.page-wrapper, div.section-wrapper { background: #0A2342 !important; }
+
+  .eyebrow { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+  .eyebrow.mag { color: var(--magenta); }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: #fff; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+  .sec-sub { font-size: 0.9rem; line-height: 1.8; color: var(--text-muted); }
+  .divider { width: 48px; height: 2px; background: var(--gold); margin: 1.25rem 0; }
+  .divider.center { margin: 1.25rem auto; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 1000; background: rgba(6,24,41,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gold-border); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  nav img { height: 38px; width: auto; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta { background: var(--magenta) !important; color: #fff !important; padding: 0.5rem 1.25rem; border-radius: 4px; }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+
+  /* BUTTONS */
+  .btn-mag { background: var(--magenta); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 1.75rem; border-radius: 6px; text-decoration: none; transition: all 0.2s; display: inline-block; }
+  .btn-mag:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(194,24,91,0.35); }
+  .btn-outline { background: transparent; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 1.75rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--gold-border); transition: all 0.2s; display: inline-block; }
+  .btn-outline:hover { background: var(--gold-light); }
+  .btn-white { background: #fff; color: var(--magenta); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.95rem 2rem; border-radius: 6px; text-decoration: none; display: inline-block; transition: all 0.2s; }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+  /* HERO */
+  #hero { min-height: 92vh; position: relative; overflow: hidden; display: flex; align-items: center; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--navy-dark) 100%); }
+  #hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(212,175,55,0.04) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(194,24,91,0.05) 0%, transparent 50%); }
+  .hero-inner { position: relative; z-index: 2; padding: 6rem 2rem 4rem; max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .hero-text { }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold-light); border: 1px solid var(--gold-border); border-radius: 50px; padding: 0.4rem 1rem; margin-bottom: 1.5rem; }
+  .hero-badge span { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+  .hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 900; line-height: 1.1; color: #fff; margin-bottom: 1.25rem; }
+  .hero-text h1 span { color: var(--gold); }
+  .hero-text p { font-size: 1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 2rem; max-width: 460px; }
+  .outcome-label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
+  .outcome-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .outcome-pill { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; color: var(--gold); background: var(--gold-light); border: 1px solid var(--gold-border); border-radius: 50px; padding: 0.3rem 0.875rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-image { position: relative; display: flex; align-items: center; justify-content: center; }
+  .hero-image img { width: 100%; max-width: 520px; border-radius: 16px; position: relative; z-index: 2; }
+  .hero-glow { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(194,24,91,0.1) 0%, transparent 70%); z-index: 1; }
+
+  /* ABOUT */
+  #about { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-img { position: relative; }
+  .about-img img { width: 100%; max-width: 440px; border-radius: 12px; border: 1px solid var(--gold-border); display: block; }
+  .five-cs-label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+  .five-cs-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .five-cs-pill { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; color: var(--magenta); background: var(--magenta-light); border: 1px solid rgba(194,24,91,0.25); border-radius: 4px; padding: 0.3rem 0.75rem; }
+  .five-d-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .five-d-pill { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; color: rgba(212,175,55,0.8); background: var(--gold-light); border: 1px solid var(--gold-border); border-radius: 4px; padding: 0.25rem 0.6rem; }
+  .about-quote { border-left: 2px solid var(--gold); padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+
+  /* PROOF */
+  #proof { background: var(--navy-dark); border-top: 1px solid var(--gold-border); border-bottom: 1px solid var(--gold-border); padding: 5rem 2rem; }
+  .proof-inner { max-width: 700px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 6rem; flex-wrap: wrap; }
+  .proof-stat .num { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 700; color: var(--gold); line-height: 1; }
+  .proof-stat .lbl { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.5rem; }
+
+  /* LOGOS */
+  #logos { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; text-align: center; }
+  .logos-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 2.5rem; }
+  .logos-grid { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 2.5rem; }
+  .logo-item { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; opacity: 0.6; filter: grayscale(0.3); transition: opacity 0.2s; }
+  .logo-item:hover { opacity: 0.9; }
+  .logo-item img { height: 72px; width: auto; object-fit: contain; }
+  .logo-item span { font-family: 'Montserrat', sans-serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-dim); text-align: center; max-width: 100px; line-height: 1.4; }
+
+  /* LEADERSHIP ERA */
+  #leadership-era { background: var(--navy-dark); border-top: 1px solid var(--gold-border); padding: 5rem 2rem; text-align: center; }
+  .leadership-era-inner { max-width: 760px; margin: 0 auto; }
+
+  /* ECOSYSTEM */
+  #ecosystem { padding: 6rem 2rem; text-align: center; }
+  .ecosystem-inner { max-width: 960px; margin: 0 auto; }
+  .ecosystem-img-wrap { margin: 3rem auto 0; max-width: 860px; border-radius: 16px; overflow: hidden; border: 1px solid var(--gold-border); }
+  .ecosystem-img-wrap img { width: 100%; display: block; }
+
+  /* FRAMEWORKS */
+  #frameworks { padding: 6rem 2rem; background: var(--navy-dark); border-top: 1px solid var(--gold-border); }
+  .frameworks-inner { max-width: 1100px; margin: 0 auto; }
+  .frameworks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 3rem; }
+  .fw-col { background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.2s; }
+  .fw-col:hover { border-color: rgba(212,175,55,0.45); transform: translateY(-3px); }
+  .fw-col-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+  .fw-col-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+  .fw-col-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); margin-bottom: 0.4rem; }
+  .fw-col-tagline { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted); font-style: italic; line-height: 1.5; margin-bottom: 0.875rem; padding-bottom: 0.875rem; border-bottom: 1px solid var(--gold-border); }
+  .fw-col-list { display: flex; flex-direction: column; gap: 0.35rem; flex: 1; list-style: none; }
+  .fw-col-list li { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; display: flex; gap: 0.4rem; align-items: flex-start; }
+  .fw-col-list li::before { content: '✓'; color: var(--gold); font-size: 0.65rem; margin-top: 2px; flex-shrink: 0; }
+  .fw-col-btn { display: block; margin-top: 1.25rem; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); text-decoration: none; padding: 0.6rem; border: 1px solid var(--gold-border); border-radius: 6px; transition: all 0.2s; }
+  .fw-col-btn:hover { background: var(--gold-light); }
+
+  /* SKILLS */
+  #skills { padding: 5rem 2rem; }
+  .skills-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .skill-item { margin-bottom: 1.75rem; }
+  .skill-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+  .skill-name { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+  .skill-pct { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); }
+  .skill-sub { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .skill-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .skill-fill { height: 100%; background: linear-gradient(90deg, var(--magenta), #e91e8c); border-radius: 3px; }
+  .video-placeholder { background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border); border-radius: 12px; padding: 3rem 2rem; text-align: center; }
+  .video-placeholder p { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-top: 1rem; }
+  .play-icon { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--gold-border); display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+
+  /* ROI */
+  #roi { padding: 6rem 2rem; background: var(--navy-dark); border-top: 1px solid var(--gold-border); }
+  .roi-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .roi-items { display: flex; flex-direction: column; gap: 1.25rem; }
+  .roi-item { display: flex; gap: 1rem; align-items: flex-start; background: rgba(255,255,255,0.02); border: 1px solid var(--gold-border); border-radius: 10px; padding: 1.25rem; transition: border-color 0.2s; }
+  .roi-item:hover { border-color: rgba(212,175,55,0.45); }
+  .roi-icon { width: 38px; height: 38px; border-radius: 8px; background: var(--gold-light); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+  .roi-item h4 { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; }
+  .roi-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* STRATEGY */
+  #strategy { padding: 5rem 2rem; text-align: center; }
+  .strategy-inner { max-width: 760px; margin: 0 auto; }
+  .bottom-line-box { background: rgba(194,24,91,0.06); border: 1px solid rgba(194,24,91,0.3); border-radius: 12px; padding: 1.5rem 2rem; margin: 2rem 0; }
+  .bottom-line-box p { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-style: italic; color: #fff; line-height: 1.7; }
+  .bottom-line-box strong { color: var(--gold); font-style: normal; }
+
+  /* SUPPORT */
+  #support { padding: 6rem 2rem; background: var(--navy-dark); border-top: 1px solid var(--gold-border); max-width: 100%; }
+  .support-inner { max-width: 900px; margin: 0 auto; }
+  .support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+  .support-item { display: flex; align-items: flex-start; gap: 1rem; background: rgba(255,255,255,0.02); border: 1px solid var(--gold-border); border-radius: 10px; padding: 1.25rem; }
+  .support-check { width: 22px; height: 22px; border-radius: 50%; background: var(--magenta-light); border: 1px solid rgba(194,24,91,0.35); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .support-check span { color: var(--magenta); font-size: 0.65rem; font-weight: 700; }
+  .support-item h4 { font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
+  .support-item p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; font-style: italic; }
+
+  /* TESTIMONIALS */
+  #testimonials { padding: 6rem 2rem; max-width: 1000px; margin: 0 auto; }
+  .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .tcard { background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border); border-radius: 12px; padding: 2rem; }
+  .tcard-photo { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--gold-border); margin-bottom: 1.25rem; object-fit: cover; display: block; background: var(--navy-mid); }
+  .tcard-name { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .tcard-title { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 1rem; }
+  .tcard-quote { font-size: 0.85rem; line-height: 1.75; color: var(--text-muted); font-style: italic; }
+
+  /* BOTTOM LINE */
+  #bottom-line { background: var(--magenta); padding: 4rem 2rem; text-align: center; }
+  .bottom-line-inner { max-width: 760px; margin: 0 auto; }
+  #bottom-line h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.25rem); color: #fff; font-weight: 700; margin-bottom: 1rem; line-height: 1.3; }
+  #bottom-line p { font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 2rem; }
+
+  /* FAQ */
+  #faq { padding: 6rem 2rem; max-width: 820px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 3rem; }
+  .faq-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .faq-item { background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border); border-radius: 10px; overflow: hidden; }
+  .faq-q { width: 100%; background: none; border: none; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; text-align: left; gap: 1rem; }
+  .faq-q span { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--gold); line-height: 1.4; }
+  .faq-arrow { color: var(--gold); font-size: 0.9rem; flex-shrink: 0; transition: transform 0.3s; }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .faq-a-inner { padding: 0 1.5rem 1.25rem; font-size: 0.83rem; color: var(--text-muted); line-height: 1.75; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-item.open .faq-a { max-height: 300px; }
+
+  /* SLIDESHOW */
+  #slideshow { padding: 5rem 2rem; background: var(--navy-dark); border-top: 1px solid var(--gold-border); text-align: center; }
+  .slideshow-inner { max-width: 900px; margin: 0 auto; }
+  .slideshow-placeholder { background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border); border-radius: 12px; padding: 4rem 2rem; margin-top: 2.5rem; }
+  .slideshow-placeholder p { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-top: 1rem; }
+
+  /* FOOTER */
+  footer { background: var(--navy-dark); border-top: 1px solid var(--gold-border); padding: 3rem 2rem; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; align-items: start; }
+  .footer-brand img { height: 38px; width: auto; margin-bottom: 1rem; display: block; }
+  .footer-brand p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; max-width: 260px; }
+  .footer-contact h4, .footer-social h4 { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .footer-contact p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .social-icons { display: flex; gap: 0.75rem; }
+  .social-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 0.2s; }
+  .social-icon:hover { opacity: 0.8; }
+  .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(212,175,55,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-dim); }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+    .hero-text p { max-width: 100%; }
+    .hero-btns { justify-content: center; }
+    .hero-image { display: none; }
+    #about { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; padding: 4rem 2rem; }
+    .about-img { display: flex; justify-content: center; }
+    .divider { margin-left: auto; margin-right: auto; }
+    .roi-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .frameworks-grid { grid-template-columns: 1fr 1fr; }
+    .support-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .frameworks-grid { grid-template-columns: 1fr; }
+    .logos-grid { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero"><img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/dru-clear-transparent-logo.png" alt="DRU CLEAR™" /></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#frameworks">Frameworks</a>
+    <a href="#contact">Contact</a>
+    <a href="https://assessment.druaiconsulting.com" class="nav-cta">Take the Assessment</a>
+  </div>
+  <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <line x1="3" y1="6" x2="19" y2="6" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="3" y1="11" x2="19" y2="11" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="3" y1="16" x2="19" y2="16" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge"><span>DRU AI Consulting</span></div>
+      <h1>Where <span>Leadership</span><br>Meets AI</h1>
+      <p>Helping organizations and leaders identify exactly where their gaps are — and building a clear, personalized pathway to close them.</p>
+      <p class="outcome-label">Strategic Outcomes</p>
+      <div class="outcome-pills">
+        <span class="outcome-pill">Innovation</span>
+        <span class="outcome-pill">Effectiveness</span>
+        <span class="outcome-pill">Integration</span>
+        <span class="outcome-pill">Performance</span>
+      </div>
+      <div class="hero-btns">
+        <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free AI Readiness Assessment</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-glow"></div>
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/hero-backdrop.png" alt="DeAnna R. Upshaw — AI Strategist" />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: ABOUT -->
+<section>
+  <div id="about">
+    <div class="about-img">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/deanna-headshot.jpg" alt="DeAnna R. Upshaw" />
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/deanna-ai-strategic.png" alt="DeAnna R. Upshaw — AI Strategist" style="width:100%;max-width:440px;border-radius:12px;border:1px solid rgba(212,175,55,0.22);display:block;margin-top:1rem;" />
+    </div>
+    <div class="about-content">
+      <span class="eyebrow">About Us</span>
+      <h2 class="sec-title">Your AI Authority and<br>Trusted Strategist</h2>
+      <div class="divider"></div>
+      <p class="sec-sub"><strong style="color:#fff;">DeAnna R. Upshaw</strong> is a Leadership Development Strategist, AI Consultant, Executive Coach, Certified International Corporate Facilitator, and Certified DISC Consultant who helps organizations empower leaders to execute the vision and achieve measurable results.</p>
+      <p class="sec-sub" style="margin-top:1rem;">With more than 10 years in leadership development and over 25 years in information technology, she bridges the gap between human leadership and artificial intelligence — so leaders don't just adapt to the future, <strong style="color:#fff;">they shape it.</strong></p>
+      <p class="sec-sub" style="margin-top:1rem;">At the core of her work is a powerful philosophy built on the <strong style="color:#fff;">Five C's</strong> — these are not just concepts, they are the operating system behind every high-performing team and every sustainable transformation. DeAnna integrates these principles into AI-enabled strategies that strengthen leaders, unify teams, and elevate organizational performance from the inside out.</p>
+      <div style="margin-top:1.25rem;">
+        <p class="five-cs-label">The Five C's at the Core of Her Work</p>
+        <div class="five-cs-pills">
+          <span class="five-cs-pill">Communication</span>
+          <span class="five-cs-pill">Connection</span>
+          <span class="five-cs-pill">Collaboration</span>
+          <span class="five-cs-pill">Culture Transformation</span>
+          <span class="five-cs-pill">Coaching</span>
+        </div>
+      </div>
+      <p class="sec-sub" style="margin-top:1rem;">Her approach develops leaders across the full spectrum of influence through the <strong style="color:#fff;">Five Dimensions of Leadership:</strong></p>
+      <div style="margin-top:0.5rem;margin-bottom:1.25rem;">
+        <div class="five-d-row">
+          <span class="five-d-pill">Self</span>
+          <span class="five-d-pill">→ People</span>
+          <span class="five-d-pill">→ Team</span>
+          <span class="five-d-pill">→ Organization</span>
+          <span class="five-d-pill">→ Strategic & Visionary</span>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--gold-border);padding-top:1.25rem;margin-top:0.5rem;">
+        <p class="sec-sub"><strong style="color:#fff;">Turning AI Confusion into Operational Confidence</strong></p>
+        <p class="sec-sub" style="margin-top:0.75rem;">Many organizations feel pressure to adopt AI but lack a clear path forward. DeAnna removes that uncertainty. She simplifies the complex, translates technology into practical action, and ensures leaders walk away with clarity, confidence, and a concrete roadmap.</p>
+        <blockquote class="about-quote">"You don't just learn about AI — you learn how to lead with it."</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: SOCIAL PROOF -->
+<section id="proof">
+  <div class="proof-inner">
+    <div>
+      <svg width="160" height="200" viewBox="240 0 200 240" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#f0cc5a"/>
+            <stop offset="100%" style="stop-color:#D4AF37"/>
+          </linearGradient>
+        </defs>
+        <path d="M340 10 L440 46 L440 130 Q440 205 340 240 Q240 205 240 130 L240 46 Z" fill="#0A2342" stroke="url(#sg)" stroke-width="2.5"/>
+        <path d="M340 22 L428 54 L428 130 Q428 196 340 228 Q252 196 252 130 L252 54 Z" fill="none" stroke="rgba(212,175,55,0.25)" stroke-width="1"/>
+        <path d="M340 22 L428 54 L428 80 L252 80 L252 54 Z" fill="#C2185B" opacity="0.12"/>
+        <text x="298" y="60" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#D4AF37" opacity="0.9">★</text>
+        <text x="340" y="55" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#D4AF37">★</text>
+        <text x="382" y="60" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#D4AF37" opacity="0.9">★</text>
+        <line x1="268" y1="72" x2="412" y2="72" stroke="rgba(212,175,55,0.4)" stroke-width="0.75"/>
+        <text x="340" y="100" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" fill="url(#sg)" letter-spacing="3">SATISFACTION</text>
+        <line x1="270" y1="110" x2="310" y2="110" stroke="rgba(212,175,55,0.35)" stroke-width="0.5"/>
+        <text x="340" y="115" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#C2185B">✦</text>
+        <line x1="370" y1="110" x2="410" y2="110" stroke="rgba(212,175,55,0.35)" stroke-width="0.5"/>
+        <text x="340" y="138" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" letter-spacing="3">GUARANTEED</text>
+        <line x1="268" y1="148" x2="412" y2="148" stroke="rgba(212,175,55,0.4)" stroke-width="0.75"/>
+        <text x="340" y="168" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="7.5" fill="rgba(212,175,55,0.65)" letter-spacing="2">DRU AI CONSULTING</text>
+        <text x="320" y="195" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="rgba(212,175,55,0.4)">★</text>
+        <text x="340" y="198" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="rgba(212,175,55,0.5)">✦</text>
+        <text x="360" y="195" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="rgba(212,175,55,0.4)">★</text>
+      </svg>
+    </div>
+    <div class="proof-stat">
+      <div class="num">240+</div>
+      <div class="lbl">Satisfied Clients</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: CLIENT LOGOS -->
+<section id="logos">
+  <p class="logos-label">Proud to Have Partnered With</p>
+  <div class="logos-grid">
+    <div class="logo-item">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/imlers.svg" alt="Imler's Poultry" />
+      <span>Imler's Poultry</span>
+    </div>
+    <div class="logo-item">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/broward-college.svg" alt="Broward College" />
+      <span>Broward College</span>
+    </div>
+    <div class="logo-item">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/tec.svg" alt="Trinity Empowerment Center" />
+      <span>Trinity Empowerment Center</span>
+    </div>
+    <div class="logo-item">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/westfall-school-district.svg" alt="Westfall School District" />
+      <span>Westfall School District</span>
+    </div>
+    <div class="logo-item">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/women's-council.svg" alt="Women's Council of Realtors" />
+      <span>Women's Council of Realtors</span>
+    </div>
+    <div class="logo-item">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/brooks-and-davis.svg" alt="Brooks &amp; Davis Real Estate" />
+      <span>Brooks &amp; Davis Real Estate</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: LEADERSHIP FOR AI ERA -->
+<section id="leadership-era">
+  <div class="leadership-era-inner">
+    <span class="eyebrow" style="display:block;text-align:center;">Leadership Development for the AI Era</span>
+    <h2 class="sec-title" style="text-align:center;">Leadership doesn't transform through<br>a single tool or workshop.</h2>
+    <div class="divider center"></div>
+    <p class="sec-sub" style="max-width:600px;margin:0 auto;text-align:center;">It happens when everything works together. The <strong style="color:#fff;">DRU AI Leadership Ecosystem™</strong> is grounded in leadership DNA and built into four proprietary frameworks. Every action drives measurable impact.</p>
+  </div>
+</section>
+
+<!-- SECTION 6: ECOSYSTEM -->
+<section id="ecosystem">
+  <div class="ecosystem-inner">
+    <span class="eyebrow" style="display:block;text-align:center;">The Operating System for AI-Ready Organizations</span>
+    <h2 class="sec-title" style="text-align:center;">The DRU AI Leadership Ecosystem™</h2>
+    <div class="divider center"></div>
+    <p class="sec-sub" style="max-width:580px;margin:0 auto;text-align:center;">An integrated system of four proprietary frameworks — each one powerful alone, unstoppable together.</p>
+    <div class="ecosystem-img-wrap">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/leadership-ecosystem-framework.png" alt="The DRU AI Leadership Ecosystem™" />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: FOUR FRAMEWORK COLUMNS -->
+<section id="frameworks">
+  <div class="frameworks-inner">
+    <div style="text-align:center;">
+      <span class="eyebrow" style="display:block;">The Four Frameworks</span>
+      <h2 class="sec-title">DRU AI Transformational<br>Support for Business</h2>
+      <div class="divider center"></div>
+      <p class="sec-sub" style="max-width:580px;margin:0 auto;">Each framework can be used independently or combined as a full ecosystem. Either way, you'll move through the <strong style="color:#fff;">DRU AI Transformation Pathway™</strong> — Discover → Diagnose → Design → Deploy → Dominate.</p>
+    </div>
+    <div class="frameworks-grid">
+      <div class="fw-col">
+        <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/5c-cultural-dna.png" alt="5C Cultural DNA™" class="fw-col-img" />
+        <div class="fw-col-body">
+          <div class="fw-col-name">5C Cultural DNA™</div>
+          <div class="fw-col-tagline">Learn IT. Live IT. Lead IT. Leadership Thinking with AI.</div>
+          <ul class="fw-col-list">
+            <li>Communication</li>
+            <li>Connection</li>
+            <li>Collaboration</li>
+            <li>Culture Transformation</li>
+            <li>Coaching</li>
+          </ul>
+          <a href="https://frameworks.druaiconsulting.com" class="fw-col-btn" target="_blank" rel="noopener noreferrer">Learn More ↗</a>
+        </div>
+      </div>
+      <div class="fw-col">
+        <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/5d-leadership.png" alt="5D Leadership™" class="fw-col-img" />
+        <div class="fw-col-body">
+          <div class="fw-col-name">5D Leadership™</div>
+          <div class="fw-col-tagline">Transformational Leadership Across Five Critical Dimensions</div>
+          <ul class="fw-col-list">
+            <li>Self Leadership</li>
+            <li>People Leadership</li>
+            <li>Team Leadership</li>
+            <li>Business Leadership</li>
+            <li>Strategic Leadership</li>
+          </ul>
+          <a href="https://frameworks.druaiconsulting.com" class="fw-col-btn" target="_blank" rel="noopener noreferrer">Learn More ↗</a>
+        </div>
+      </div>
+      <div class="fw-col">
+        <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/ai-sales-mastery.png" alt="AI Sales Mastery™" class="fw-col-img" />
+        <div class="fw-col-body">
+          <div class="fw-col-name">AI Sales Mastery™</div>
+          <div class="fw-col-tagline">DISC Behavioral Insights + AI for Revenue Acceleration</div>
+          <ul class="fw-col-list">
+            <li>Hyper-Personalized Outreach</li>
+            <li>Speak Your Client's Decision Language</li>
+            <li>Predict Objections Before They Happen</li>
+            <li>Close with Confidence, Not Pressure</li>
+          </ul>
+          <a href="https://frameworks.druaiconsulting.com" class="fw-col-btn" target="_blank" rel="noopener noreferrer">Learn More ↗</a>
+        </div>
+      </div>
+      <div class="fw-col">
+        <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/dru-clear.png" alt="DRU CLEAR™" class="fw-col-img" style="object-fit:contain;padding:1rem;background:#0d2d56;" />
+        <div class="fw-col-body">
+          <div class="fw-col-name">DRU CLEAR™</div>
+          <div class="fw-col-tagline">A Transformation Pathway of AI Confidence</div>
+          <ul class="fw-col-list">
+            <li>Clarity</li>
+            <li>Leadership</li>
+            <li>Execution</li>
+            <li>Alignment</li>
+            <li>Results</li>
+          </ul>
+          <a href="https://frameworks.druaiconsulting.com" class="fw-col-btn" target="_blank" rel="noopener noreferrer">Learn More ↗</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free AI Readiness Assessment</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: TOP 3 SKILLS + VIDEO -->
+<section id="skills">
+  <div class="skills-inner">
+    <div>
+      <span class="eyebrow">AI-Ready Organizations</span>
+      <h2 class="sec-title">Top Three Skills for<br>AI-Ready Organizations</h2>
+      <div class="divider"></div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Strategic Communication</span><span class="skill-pct">100%</span></div>
+        <p class="skill-sub">Human + Digital Fluency</p>
+        <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Adaptive Leadership Development</span><span class="skill-pct">90%</span></div>
+        <p class="skill-sub">Leading Through Rapid Change</p>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Data-Driven Critical Thinking</span><span class="skill-pct">80%</span></div>
+        <p class="skill-sub">Decision Making</p>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+    </div>
+    <div class="video-placeholder">
+      <!-- SWAP with YouTube embed when ready -->
+      <!-- <iframe width="100%" height="300" src="YOUTUBE_VIDEO_LINK" frameborder="0" allowfullscreen style="border-radius:8px;"></iframe> -->
+      <div class="play-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L16 10L7 16V4Z" fill="#D4AF37"/></svg>
+      </div>
+      <p>Coaching Video — Coming Soon</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: ROI -->
+<section id="roi">
+  <div class="roi-inner">
+    <div>
+      <span class="eyebrow">Where Strategy Meets Execution</span>
+      <h2 class="sec-title">Strategic Value for Leaders<br>Focused on <span style="color:var(--gold)">Results, Not Hype</span></h2>
+      <div class="divider"></div>
+      <p class="sec-sub">Organizations partner with DRU AI Consulting not for experimentation — but for measurable performance improvement, operational clarity, and sustained competitive advantage.</p>
+    </div>
+    <div class="roi-items">
+      <div class="roi-item">
+        <div class="roi-icon">⚡</div>
+        <div><h4>Operational Efficiency &amp; Cost Optimization</h4><p>Through targeted AI integration and workflow redesign, leaders reduce inefficiencies that quietly drain time, talent, and budget.</p></div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-icon">💰</div>
+        <div><h4>Revenue Expansion &amp; Market Advantage</h4><p>Turn AI into a growth engine — not just a productivity tool. Unlock new revenue opportunities while strengthening your competitive position.</p></div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-icon">🚀</div>
+        <div><h4>Leadership Capability &amp; Organizational Resilience</h4><p>Build leaders who can navigate complexity and scale performance. Sustainable results come from people, not tools alone.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: STRATEGY MEETS EXECUTION + BOTTOM LINE — merged -->
+<section id="strategy" style="background:var(--navy-dark);border-top:1px solid var(--gold-border);">
+  <div style="max-width:760px;margin:0 auto;padding:5rem 2rem;text-align:center;">
+    <span class="eyebrow" style="display:block;text-align:center;">Where Strategy Meets Execution</span>
+    <h2 class="sec-title" style="text-align:center;">AI Tools Alone Don't Create Results —<br>Strategic Implementation Does</h2>
+    <div class="divider center"></div>
+    <p class="sec-sub" style="text-align:center;max-width:580px;margin:0 auto 2rem;">DRU AI Consulting guides you in adopting AI intentionally, responsibly, and profitably — transforming uncertainty into a measurable advantage and bolstering your business resilience and continuity.</p>
+    <div style="background:rgba(194,24,91,0.06);border:1px solid rgba(194,24,91,0.3);border-radius:12px;padding:1.5rem 2rem;margin:0 auto 2rem;max-width:640px;">
+      <p style="font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:#fff;line-height:1.7;"><strong style="color:var(--gold);font-style:normal;">AI is not just a technology upgrade</strong> — it is a comprehensive operational, cultural, and strategic transformation. Organizations partner with DRU AI Consulting not for experimentation — but for measurable performance improvement, operational clarity, and sustained competitive advantage.</p>
+    </div>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free AI Readiness Assessment</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 11: TRANSFORMATIONAL SUPPORT -->
+<section id="support">
+  <div class="support-inner">
+    <div style="text-align:center;">
+      <span class="eyebrow mag" style="display:block;text-align:center;">DRU AI Consulting</span>
+      <h2 class="sec-title" style="text-align:center;">Transformational AI Support<br>for Your Business</h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="support-grid">
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>Executive-Level Education That Eliminates AI Confusion</h4><p>Confident leadership, faster decisions, reduced risk of costly missteps.</p></div></div>
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>Operational Streamlining That Reclaims Time and Capacity</h4><p>More output with the same staff — or the same output with less effort.</p></div></div>
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>End-to-End Implementation Roadmap</h4><p>AI initiatives move forward with clarity and momentum.</p></div></div>
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>Intelligent Automation Across Functions</h4><p>Reduced costs, fewer errors, faster turnaround times.</p></div></div>
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>Enhanced Decision-Making Through Data Intelligence</h4><p>Decisions based on evidence, not guesswork.</p></div></div>
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>Personalized Customer Experiences at Scale</h4><p>Higher satisfaction, loyalty, retention, and lifetime value.</p></div></div>
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>Improved Customer Service Without Increasing Headcount</h4><p>Better service quality with controlled labor costs.</p></div></div>
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>Strategic Opportunity Mapping</h4><p>Focus on initiatives that deliver meaningful business value first.</p></div></div>
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>Implementation Plan Tailored to Your Organization</h4><p>A clear path from the current state to the AI-enabled future.</p></div></div>
+      <div class="support-item"><div class="support-check"><span>✓</span></div><div><h4>Productivity Multiplication Across the Organization</h4><p>Teams accomplish more in less time.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 12: TESTIMONIALS -->
+<section id="testimonials">
+  <div style="text-align:center;">
+    <span class="eyebrow" style="display:block;">Testimonials</span>
+    <h2 class="sec-title" style="text-align:center;">What Leaders Are Saying</h2>
+    <div class="divider center"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="tcard">
+      <img class="tcard-photo" src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/kimberly-wilson-wetty.png" alt="Kimberly Wilson Wetty" />
+      <div class="tcard-name">Kimberly Wilson Wetty</div>
+      <div class="tcard-title">Founder and CEO, KWW Inc</div>
+      <p class="tcard-quote">"DeAnna contributed wonderful creativity and energy to our shared project, approaching each challenge with a positive, can-do attitude. As an experienced trainer, she helped guide the team with clear insight and practical expertise. Her professionalism and optimism made a real difference in our success. DeAnna's focus keeps you on your toes and smiling along the way. Highly recommend!"</p>
+    </div>
+    <div class="tcard">
+      <img class="tcard-photo" src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/dr-monique-bernier.png" alt="Dr. Monique Bernier" />
+      <div class="tcard-name">Dr. Monique Bernier</div>
+      <div class="tcard-title">Professor, Mental Health Professional</div>
+      <p class="tcard-quote">"Coach Dee challenged me, so I realized a more profound perception of my educational delay was not a denial but an impasse on my journey. Coach Dee confronted me, prompting me to face the reality of obstacles with clarity, focus, and honesty. Her qualities allowed me to transform my mindset and barriers into success."</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:2.5rem;">
+    <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free AI Readiness Assessment</a>
+  </div>
+</section>
+
+<!-- SECTION 13: FAQ -->
+<section id="faq">
+  <div class="faq-header">
+    <span class="eyebrow" style="display:block;text-align:center;">FAQ</span>
+    <h2 class="sec-title" style="text-align:center;">Frequently Asked Questions</h2>
+    <div class="divider center"></div>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>How does DRU AI Consulting tailor strategies to fit specific business needs?</span><span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Every engagement begins with a discovery process: Business Goals → Bottleneck → Custom Strategy → Custom Simple Plan. We never apply a generic template to a unique organization.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>What types of businesses can benefit from your consulting services?</span><span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Small and Medium Enterprises · Startups and Early-Stage Companies · Large Corporations and Enterprises · Nonprofits and Government Agencies · Specialized Industries including Travel, Real Estate, Healthcare, and Marketing and Sales-Focused organizations.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>Can DRU AI Consulting help in measuring the impact of changes implemented?</span><span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely. We define success metrics at the start of every engagement, monitor them post-implementation, and adjust strategies as needed to ensure results are real and lasting.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>What is the usual duration of a consulting engagement with DRU AI Consulting?</span><span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Engagements are structured to the extent necessary to observe a return on investment and measure deliverables. We work with you until the transformation is real — not just on paper.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>How does DRU AI Consulting ensure the confidentiality and security of information?</span><span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Security encompasses the technical, physical, and administrative measures used to safeguard information integrity, availability, and confidentiality. All client information is handled with the highest level of professional discretion.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>Is there post-consultation support available with DRU AI Consulting?</span><span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes. DRU AI Consulting provides post-consultation support to ensure that strategies and changes continue to generate desired outcomes long after the initial engagement concludes.</div></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:3rem;">
+    <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free AI Readiness Assessment</a>
+  </div>
+</section>
+
+<!-- SECTION 15: SLIDESHOW -->
+<section id="slideshow">
+  <div class="slideshow-inner">
+    <span class="eyebrow" style="display:block;text-align:center;">In Action Across the Nation</span>
+    <h2 class="sec-title" style="text-align:center;">Global Impact, Diverse Communities</h2>
+    <div class="divider center"></div>
+    <p class="sec-sub" style="max-width:520px;margin:0 auto;text-align:center;">From corporate boardrooms to international roundtables — DeAnna has facilitated transformation across industries, cultures, and continents.</p>
+    <div class="slideshow-placeholder">
+      <!-- SWAP with YouTube embed when ready -->
+      <!-- <iframe width="100%" height="420" src="YOUTUBE_SLIDESHOW_LINK" frameborder="0" allowfullscreen style="border-radius:8px;"></iframe> -->
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin:0 auto;display:block;">
+        <circle cx="20" cy="20" r="19" stroke="rgba(212,175,55,0.3)" stroke-width="1.5"/>
+        <path d="M15 12L28 20L15 28V12Z" fill="rgba(212,175,55,0.4)"/>
+      </svg>
+      <p>Global Slideshow — Coming Soon</p>
+    </div>
+  </div>
+</section>
+
+<!-- QR CODE SECTION -->
+<section style="padding:5rem 2rem;text-align:center;background:var(--navy-dark);border-top:1px solid var(--gold-border);">
+  <div style="max-width:520px;margin:0 auto;">
+    <span class="eyebrow" style="display:block;text-align:center;">Are You AI Ready?</span>
+    <h2 class="sec-title" style="text-align:center;">Take the Assessment<br>Right Now</h2>
+    <div class="divider center"></div>
+    <p class="sec-sub" style="text-align:center;margin-bottom:2rem;">Scan the QR code with your phone to take the free DRU CLEAR™ AI Readiness Assessment and discover where you are in this AI Era.</p>
+    <div style="display:flex;justify-content:center;">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/DRU-CLEAR-QR-Universal.png" alt="Scan to Take the DRU CLEAR™ AI Readiness Assessment" style="width:200px;height:200px;border-radius:12px;border:2px solid var(--gold-border);" />
+    </div>
+    <p style="font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-top:1.25rem;">assessment.druaiconsulting.com</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/dru-clear-transparent-logo.png" alt="DRU CLEAR™" />
+      <p>AI Mastery. Leadership Clarity. Measurable Results.</p>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>📍 Houston, Texas</p>
+      <p>📞 281.819.3128</p>
+      <p>✉️ deanna@druaiconsulting.com</p>
+    </div>
+    <div class="footer-social">
+      <h4>Connect</h4>
+      <div class="social-icons">
+        <a href="#" class="social-icon" style="background:#1877F2;" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-icon" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="#fff" stroke="none"/></svg>
+        </a>
+        <a href="#" class="social-icon" style="background:#0A66C2;" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" class="social-icon" style="background:#FF0000;" aria-label="YouTube">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#FF0000"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 DRU AI Consulting · All Rights Reserved</p>
+    <p>druaiconsulting.com</p>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+  function toggleMobileNav() {
+    const links = document.querySelector('.nav-links');
+    const isVisible = links.style.display === 'flex';
+    links.style.display = isVisible ? 'none' : 'flex';
+    if (!isVisible) {
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '64px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'rgba(6,24,41,0.98)';
+      links.style.padding = '1.5rem 2rem';
+      links.style.borderBottom = '1px solid rgba(212,175,55,0.2)';
+      links.style.zIndex = '999';
+    }
+  }
+</script>
+
+</body>
+</html>
