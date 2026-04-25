@@ -85,12 +85,12 @@
 
   /* LOGOS */
   #logos { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; text-align: center; }
-  .logos-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 2.5rem; }
+  .logos-label { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ffffff; margin-bottom: 2.5rem; }
   .logos-grid { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 2.5rem; }
   .logo-item { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; opacity: 0.6; filter: grayscale(0.3); transition: opacity 0.2s; }
   .logo-item:hover { opacity: 0.9; }
   .logo-item img { height: 72px; width: auto; object-fit: contain; }
-  .logo-item span { font-family: 'Montserrat', sans-serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-dim); text-align: center; max-width: 100px; line-height: 1.4; }
+  .logo-item span { font-family: 'Montserrat', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; color: #ffffff; text-align: center; max-width: 100px; line-height: 1.4; }
 
   /* LEADERSHIP ERA */
   #leadership-era { background: var(--navy-dark); border-top: 1px solid var(--gold-border); padding: 5rem 2rem; text-align: center; }
@@ -99,7 +99,7 @@
   /* ECOSYSTEM */
   #ecosystem { padding: 6rem 2rem; text-align: center; }
   .ecosystem-inner { max-width: 960px; margin: 0 auto; }
-  .ecosystem-img-wrap { margin: 3rem auto 0; max-width: 860px; border-radius: 16px; overflow: hidden; border: 1px solid var(--gold-border); }
+  .ecosystem-img-wrap { margin: 0 auto; max-width: 860px; border-radius: 16px; overflow: hidden; border: 1px solid var(--gold-border); }
   .ecosystem-img-wrap img { width: 100%; display: block; }
 
   /* FRAMEWORKS */
@@ -141,13 +141,6 @@
   .roi-icon { width: 38px; height: 38px; border-radius: 8px; background: var(--gold-light); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
   .roi-item h4 { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; }
   .roi-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
-
-  /* STRATEGY */
-  #strategy { padding: 5rem 2rem; text-align: center; }
-  .strategy-inner { max-width: 760px; margin: 0 auto; }
-  .bottom-line-box { background: rgba(194,24,91,0.06); border: 1px solid rgba(194,24,91,0.3); border-radius: 12px; padding: 1.5rem 2rem; margin: 2rem 0; }
-  .bottom-line-box p { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-style: italic; color: #fff; line-height: 1.7; }
-  .bottom-line-box strong { color: var(--gold); font-style: normal; }
 
   /* SUPPORT */
   #support { padding: 6rem 2rem; background: var(--navy-dark); border-top: 1px solid var(--gold-border); max-width: 100%; }
@@ -306,7 +299,7 @@
           <span class="five-d-pill">→ People</span>
           <span class="five-d-pill">→ Team</span>
           <span class="five-d-pill">→ Organization</span>
-          <span class="five-d-pill">→ Strategic & Visionary</span>
+          <span class="five-d-pill">→ Strategic &amp; Visionary</span>
         </div>
       </div>
       <div style="border-top:1px solid var(--gold-border);padding-top:1.25rem;margin-top:0.5rem;">
@@ -396,13 +389,9 @@
   </div>
 </section>
 
-<!-- SECTION 6: ECOSYSTEM -->
+<!-- SECTION 6: ECOSYSTEM — image only -->
 <section id="ecosystem">
   <div class="ecosystem-inner">
-    <span class="eyebrow" style="display:block;text-align:center;">The Operating System for AI-Ready Organizations</span>
-    <h2 class="sec-title" style="text-align:center;">The DRU AI Leadership Ecosystem™</h2>
-    <div class="divider center"></div>
-    <p class="sec-sub" style="max-width:580px;margin:0 auto;text-align:center;">An integrated system of four proprietary frameworks — each one powerful alone, unstoppable together.</p>
     <div class="ecosystem-img-wrap">
       <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/leadership-ecosystem-framework.png" alt="The DRU AI Leadership Ecosystem™" />
     </div>
@@ -413,10 +402,9 @@
 <section id="frameworks">
   <div class="frameworks-inner">
     <div style="text-align:center;">
-      <span class="eyebrow" style="display:block;">The Four Frameworks</span>
-      <h2 class="sec-title">DRU AI Transformational<br>Support for Business</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;font-weight:700;line-height:1.2;margin-bottom:1rem;">The Four Frameworks</h2>
       <div class="divider center"></div>
-      <p class="sec-sub" style="max-width:580px;margin:0 auto;">Each framework can be used independently or combined as a full ecosystem. Either way, you'll move through the <strong style="color:#fff;">DRU AI Transformation Pathway™</strong> — Discover → Diagnose → Design → Deploy → Dominate.</p>
+      <p class="sec-sub" style="max-width:580px;margin:0 auto;">Each framework can be used independently or combined as a full ecosystem. Either way, you'll move through the <strong style="color:var(--gold);">DRU AI Transformation Pathway™</strong> — <span style="color:var(--gold);font-weight:700;">Discover</span> → <span style="color:var(--gold);font-weight:700;">Diagnose</span> → <span style="color:var(--gold);font-weight:700;">Design</span> → <span style="color:var(--magenta);font-weight:700;">Deploy</span> → <span style="color:var(--magenta);font-weight:700;">Dominate</span></p>
     </div>
     <div class="frameworks-grid">
       <div class="fw-col">
@@ -527,6 +515,14 @@
       <h2 class="sec-title">Strategic Value for Leaders<br>Focused on <span style="color:var(--gold)">Results, Not Hype</span></h2>
       <div class="divider"></div>
       <p class="sec-sub">Organizations partner with DRU AI Consulting not for experimentation — but for measurable performance improvement, operational clarity, and sustained competitive advantage.</p>
+      <div style="margin-top:2rem;">
+        <div style="background:rgba(194,24,91,0.06);border:1px solid rgba(194,24,91,0.3);border-radius:12px;padding:1.5rem 2rem;">
+          <p style="font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:#fff;line-height:1.7;"><strong style="color:var(--gold);font-style:normal;">AI is not just a technology upgrade</strong> — it is a comprehensive operational, cultural, and strategic transformation. Organizations partner with DRU AI Consulting not for experimentation — but for measurable performance improvement, operational clarity, and sustained competitive advantage.</p>
+        </div>
+        <div style="text-align:center;margin-top:1.5rem;">
+          <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free AI Readiness Assessment</a>
+        </div>
+      </div>
     </div>
     <div class="roi-items">
       <div class="roi-item">
@@ -541,22 +537,6 @@
         <div class="roi-icon">🚀</div>
         <div><h4>Leadership Capability &amp; Organizational Resilience</h4><p>Build leaders who can navigate complexity and scale performance. Sustainable results come from people, not tools alone.</p></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 10: STRATEGY MEETS EXECUTION + BOTTOM LINE — merged -->
-<section id="strategy" style="background:var(--navy-dark);border-top:1px solid var(--gold-border);">
-  <div style="max-width:760px;margin:0 auto;padding:5rem 2rem;text-align:center;">
-    <span class="eyebrow" style="display:block;text-align:center;">Where Strategy Meets Execution</span>
-    <h2 class="sec-title" style="text-align:center;">AI Tools Alone Don't Create Results —<br>Strategic Implementation Does</h2>
-    <div class="divider center"></div>
-    <p class="sec-sub" style="text-align:center;max-width:580px;margin:0 auto 2rem;">DRU AI Consulting guides you in adopting AI intentionally, responsibly, and profitably — transforming uncertainty into a measurable advantage and bolstering your business resilience and continuity.</p>
-    <div style="background:rgba(194,24,91,0.06);border:1px solid rgba(194,24,91,0.3);border-radius:12px;padding:1.5rem 2rem;margin:0 auto 2rem;max-width:640px;">
-      <p style="font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:#fff;line-height:1.7;"><strong style="color:var(--gold);font-style:normal;">AI is not just a technology upgrade</strong> — it is a comprehensive operational, cultural, and strategic transformation. Organizations partner with DRU AI Consulting not for experimentation — but for measurable performance improvement, operational clarity, and sustained competitive advantage.</p>
-    </div>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free AI Readiness Assessment</a>
     </div>
   </div>
 </section>
