@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Portal</title>
+
+  <!-- PWA — separate app identity from the main PWA -->
+  <meta name="application-name" content="Admin Portal" />
+  <meta name="apple-mobile-web-app-title" content="Admin Portal" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#7B1A2E" />
+
+  <link rel="manifest" id="pwa-manifest" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #7B1A2E;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, serif;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(212,175,55,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #8a1f35, #5a1222);
+      border: 2px solid rgba(212,175,55,0.55);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(212,175,55,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .name {
+      font-family: Georgia, serif;
+      color: #D4AF37;
+      font-size: 1.15rem;
+      letter-spacing: 0.06em;
+    }
+    .sub {
+      font-family: Arial, sans-serif;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: -6px;
+    }
+    .spinner {
+      width: 26px;
+      height: 26px;
+      border: 2px solid rgba(212,175,55,0.2);
+      border-top-color: #D4AF37;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      margin-top: 4px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="icon">
+    <canvas id="icon-canvas" width="64" height="64"></canvas>
+  </div>
+  <div class="name">Admin Portal</div>
+  <div class="sub">DRU AI Consulting</div>
+  <div class="spinner"></div>
+</div>
+
+<script>
+  // ── Draw small icon ────────────────────────────────────────────────────────
+  const canvas = document.getElementById('icon-canvas');
+  const ctx = canvas.getContext('2d');
+  const g = ctx.createLinearGradient(0, 0, 64, 64);
+  g.addColorStop(0, '#8a1f35');
+  g.addColorStop(1, '#5a1222');
+  ctx.fillStyle = g;
+  ctx.roundRect(0, 0, 64, 64, 10);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(32, 8); ctx.lineTo(12, 18); ctx.lineTo(12, 36);
+  ctx.quadraticCurveTo(12, 52, 32, 58);
+  ctx.quadraticCurveTo(52, 52, 52, 36);
+  ctx.lineTo(52, 18); ctx.closePath();
+  ctx.strokeStyle = '#D4AF37'; ctx.lineWidth = 1.5; ctx.stroke();
+  ctx.fillStyle = 'rgba(212,175,55,0.12)'; ctx.fill();
+  ctx.fillStyle = '#D4AF37';
+  ctx.font = 'bold 18px Georgia, serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('DC', 32, 34);
+
+  // ── Draw full-size PWA icon ────────────────────────────────────────────────
+  const big = document.createElement('canvas');
+  big.width = 512; big.height = 512;
+  const b = big.getContext('2d');
+  const bg = b.createLinearGradient(0, 0, 512, 512);
+  bg.addColorStop(0, '#8a1f35'); bg.addColorStop(1, '#5a1222');
+  b.fillStyle = bg;
+  b.roundRect(0, 0, 512, 512, 80); b.fill();
+  b.strokeStyle = '#D4AF37'; b.lineWidth = 8;
+  b.roundRect(8, 8, 496, 496, 72); b.stroke();
+  b.beginPath();
+  b.moveTo(256, 60); b.lineTo(90, 130); b.lineTo(90, 280);
+  b.quadraticCurveTo(90, 410, 256, 450);
+  b.quadraticCurveTo(422, 410, 422, 280);
+  b.lineTo(422, 130); b.closePath();
+  b.strokeStyle = '#D4AF37'; b.lineWidth = 6; b.stroke();
+  b.fillStyle = 'rgba(212,175,55,0.1)'; b.fill();
+  b.fillStyle = '#D4AF37';
+  b.font = 'bold 140px Georgia, serif';
+  b.textAlign = 'center'; b.textBaseline = 'middle';
+  b.fillText('DC', 256, 272);
+  const iconUrl = big.toDataURL('image/png');
+
+  // ── Inject PWA manifest ────────────────────────────────────────────────────
+  const manifest = {
+    name: "Admin Portal",
+    short_name: "Admin Portal",
+    description: "DRU AI Consulting Command Center",
+    start_url: "https://app.druaiconsulting.com/admin",
+    display: "standalone",
+    background_color: "#7B1A2E",
+    theme_color: "#7B1A2E",
+    icons: [
+      { src: iconUrl, sizes: "192x192", type: "image/png" },
+      { src: iconUrl, sizes: "512x512", type: "image/png" }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
+  document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
+
+  // Apple touch icon
+  const al = document.createElement('link');
+  al.rel = 'apple-touch-icon'; al.href = iconUrl;
+  document.head.appendChild(al);
+
+  const fl = document.createElement('link');
+  fl.rel = 'icon'; fl.href = iconUrl;
+  document.head.appendChild(fl);
+
+  // ── Redirect ───────────────────────────────────────────────────────────────
+  setTimeout(() => {
+    window.location.replace('https://app.druaiconsulting.com/admin');
+  }, 1000);
+</script>
+
+</body>
+</html>
