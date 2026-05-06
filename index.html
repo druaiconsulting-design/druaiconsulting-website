@@ -198,6 +198,9 @@
   .social-icon:hover { opacity: 0.8; }
   .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(212,175,55,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
   .footer-bottom p { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-dim); }
+  .footer-legal-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .footer-legal-links a { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .footer-legal-links a:hover { color: var(--gold); }
 
   /* RESPONSIVE */
   @media (max-width: 960px) {
@@ -723,7 +726,11 @@
   </div>
   <div class="footer-bottom">
     <p>© 2026 DRU AI Consulting · All Rights Reserved</p>
-    <p>druaiconsulting.com</p>
+    <div class="footer-legal-links">
+      <p>druaiconsulting.com</p>
+      <a href="https://druaiconsulting.com/privacy-policy">Privacy Policy</a>
+      <a href="https://druaiconsulting.com/terms">Terms of Engagement</a>
+    </div>
   </div>
 </footer>
 
