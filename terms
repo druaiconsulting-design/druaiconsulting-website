@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Engagement — DRU AI Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0A2342;
+      --gold:    #D4AF37;
+      --magenta: #C2185B;
+      --warm:    #FAFAF8;
+      --text:    #1A1A2E;
+    }
+
+    body {
+      background: var(--warm);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--navy);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(212,175,55,0.7);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(212,175,55,0.3);
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+    }
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--magenta);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      color: #FFFFFF;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .hero-sub {
+      font-family: 'Inter', sans-serif;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* CONTENT */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .effective {
+      background: rgba(212,175,55,0.08);
+      border-left: 3px solid var(--gold);
+      padding: 0.75rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 2.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+    }
+
+    .intro {
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: #2A2A3E;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(10,35,66,0.1);
+    }
+
+    .terms-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .term-item {
+      border-left: 2px solid rgba(212,175,55,0.4);
+      padding-left: 1.5rem;
+    }
+
+    .term-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .term-title span {
+      color: var(--gold);
+      margin-right: 0.5rem;
+    }
+
+    .term-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      color: #2A2A3E;
+      line-height: 1.85;
+    }
+
+    /* CONTACT BOX */
+    .contact-box {
+      margin-top: 3rem;
+      padding: 1.5rem 1.75rem;
+      background: var(--navy);
+      border-radius: 10px;
+    }
+    .contact-box-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .contact-box p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .contact-box a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(212,175,55,0.2);
+    }
+    footer p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://druaiconsulting.com" class="nav-brand">DRU CLEAR™</a>
+    <a href="https://druaiconsulting.com" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Legal · Compliance · Transparency</p>
+    <h1>Terms of Engagement</h1>
+    <p class="hero-sub">Dimensional Solns, LLC &nbsp;·&nbsp; DBA DRU AI Consulting &nbsp;·&nbsp; Texas, USA</p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container">
+
+    <div class="effective">Last Updated: April 2026 &nbsp;·&nbsp; Effective for all engagements with DRU AI Consulting (DBA of Dimensional Solns, LLC)</div>
+
+    <p class="intro">
+      The following terms govern all service engagements with DRU AI Consulting, a DBA of Dimensional Solns, LLC. By completing payment or submitting an inquiry, you agree to be bound by these terms in their entirety. Please read carefully before proceeding.
+    </p>
+
+    <div class="terms-list">
+
+      <div class="term-item">
+        <p class="term-title"><span>01</span> Services</p>
+        <p class="term-body">All diagnostic, framework, and ecosystem engagements are delivered virtually via Zoom unless otherwise agreed in writing. Session scheduling begins upon receipt of full or initial payment.</p>
+      </div>
+
+      <div class="term-item">
+        <p class="term-title"><span>02</span> Payment</p>
+        <p class="term-body">Full payment is required before services commence, except for the Full Ecosystem engagement which requires 50% at signing and 50% at completion. All prices are in USD.</p>
+      </div>
+
+      <div class="term-item">
+        <p class="term-title"><span>03</span> Non-Refundable Policy</p>
+        <p class="term-body">All payments are non-refundable. By completing your purchase you acknowledge that you have reviewed the service description, understand the scope of your selected engagement, and are committing to your transformation pathway. No refunds will be issued for any reason including unused sessions, scheduling conflicts, or change of mind.</p>
+      </div>
+
+      <div class="term-item">
+        <p class="term-title"><span>04</span> Rescheduling</p>
+        <p class="term-body">Sessions may be rescheduled with a minimum of 48 hours notice. Sessions cancelled with less than 48 hours notice are forfeited.</p>
+      </div>
+
+      <div class="term-item">
+        <p class="term-title"><span>05</span> Intellectual Property</p>
+        <p class="term-body">All frameworks, materials, and methodologies — including DRU CLEAR™, 5C Cultural DNA™, 5D Leadership™, and AI Sales Mastery™ — are the proprietary intellectual property of DRU AI Consulting. Materials shared during engagements are for client use only and may not be reproduced or redistributed without express written permission.</p>
+      </div>
+
+      <div class="term-item">
+        <p class="term-title"><span>06</span> Agreement</p>
+        <p class="term-body">Completing payment constitutes your full agreement to these terms. These terms are governed by the laws of the State of Texas, USA. Any disputes shall be resolved in the jurisdiction of Texas.</p>
+      </div>
+
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-box">
+      <p class="contact-box-label">Questions?</p>
+      <p>Contact DRU AI Consulting prior to completing your purchase with any questions regarding these terms.</p>
+      <a href="mailto:support@druaiconsulting.com">support@druaiconsulting.com</a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Dimensional Solns, LLC · DBA DRU AI Consulting · All Rights Reserved · DRU CLEAR™</p>
+  </footer>
+
+</body>
+</html>
