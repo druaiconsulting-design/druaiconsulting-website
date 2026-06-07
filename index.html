@@ -14,7 +14,7 @@
 <style>
   :root {
     --navy: #0A2342;
-    --navy-dark: #061829;
+    --navy-dark: #0F3060;
     --navy-mid: #0d2d56;
     --gold: #D4AF37;
     --gold-light: rgba(212,175,55,0.10);
@@ -97,7 +97,7 @@
   }
 
   /* ── Nav ────────────────────────────────────────────────────────────────── */
-  nav { position: sticky; top: 0; z-index: 1000; background: rgba(6,24,41,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gold-border); padding: 0 2rem; height: 100px; display: flex; align-items: center; justify-content: space-between; transition: box-shadow 0.3s; }
+  nav { position: sticky; top: 0; z-index: 1000; background: rgba(15,48,96,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gold-border); padding: 0 2rem; height: 100px; display: flex; align-items: center; justify-content: space-between; transition: box-shadow 0.3s; }
   nav img { height: 160px; width: auto; }
   .nav-links { display: flex; gap: 1.5rem; align-items: center; }
   .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
@@ -119,10 +119,9 @@
     display: flex; align-items: center;
     background-color: var(--warm-white);
     background-image:
-      radial-gradient(ellipse at 6% 55%, rgba(212,175,55,0.13) 0%, transparent 45%),
-      radial-gradient(ellipse at 92% 18%, rgba(194,24,91,0.07) 0%, transparent 45%),
-      radial-gradient(rgba(10,35,66,0.04) 1px, transparent 1px);
-    background-size: auto, auto, 28px 28px;
+      radial-gradient(ellipse at 6% 55%, rgba(212,175,55,0.1) 0%, transparent 45%),
+      radial-gradient(ellipse at 92% 18%, rgba(194,24,91,0.05) 0%, transparent 45%);
+    background-size: auto, auto;
   }
   .hero-inner { position: relative; z-index: 2; padding: 6rem 2rem 4rem; max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
   .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--navy); border: 1px solid var(--navy); border-radius: 50px; padding: 0.4rem 1.1rem; margin-bottom: 1.5rem; }
@@ -140,7 +139,7 @@
 
   /* ── About ──────────────────────────────────────────────────────────────── */
   #about { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .about-img img { width: 100%; max-width: 440px; border-radius: 12px; border: 1px solid var(--gold-border); display: block; box-shadow: 0 4px 24px rgba(10,35,66,0.08); }
+  .about-img img { width: 100%; max-width: 440px; border-radius: 12px; border: 1px solid var(--gold-border); display: block; }
   .five-cs-label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy-text-muted); margin-bottom: 0.75rem; }
   .five-cs-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
   .five-cs-pill { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; color: var(--magenta); background: var(--magenta-light); border: 1px solid rgba(194,24,91,0.25); border-radius: 4px; padding: 0.3rem 0.75rem; }
@@ -201,7 +200,7 @@
   .skill-fill { height: 100%; background: linear-gradient(90deg, var(--magenta), #e91e8c); border-radius: 3px; }
 
   /* ── ROI — NAVY BLOCK ───────────────────────────────────────────────────── */
-  #roi { padding: 6rem 2rem; background: var(--navy); border-top: 1px solid var(--gold-border); }
+  #roi { padding: 6rem 2rem; background: #0D3060; border-top: 1px solid var(--gold-border); }
   .roi-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .roi-items { display: flex; flex-direction: column; gap: 1.25rem; }
   .roi-item { display: flex; gap: 1rem; align-items: flex-start; background: rgba(255,255,255,0.04); border: 1px solid var(--gold-border); border-radius: 10px; padding: 1.25rem; transition: border-color 0.2s, background 0.2s; }
@@ -346,7 +345,7 @@
   <div id="about">
     <div class="about-img reveal">
       <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/deanna-headshot.jpg" alt="DeAnna R. Upshaw" />
-      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/deanna-ai-strategic.png" alt="DeAnna R. Upshaw — AI Strategist" style="width:100%;max-width:440px;border-radius:12px;border:1px solid rgba(212,175,55,0.22);display:block;margin-top:1rem;box-shadow:0 4px 24px rgba(10,35,66,0.08);" />
+      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/deanna-ai-strategic.png" alt="DeAnna R. Upshaw — AI Strategist" style="width:100%;max-width:440px;border-radius:12px;border:1px solid rgba(212,175,55,0.22);display:block;margin-top:1rem;" />
     </div>
     <div class="about-content reveal reveal-d1">
       <span class="eyebrow">About Us</span>
