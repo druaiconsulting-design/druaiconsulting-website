@@ -66,15 +66,19 @@
     50%       { opacity: 0.85; transform: scale(1.08); }
   }
 
-  /* Hero logo seal — navy background fixes transparency, rounded for intent */
-  .hero-logo { margin-bottom: 1.75rem; }
+  /* Hero logo — fills the full left column, no artificial size constraints */
+  .hero-logo { margin-bottom: 1.75rem; width: 100%; }
   .hero-logo-seal {
-    display: inline-flex; align-items: center; justify-content: center;
-    background: var(--navy); border-radius: 20px;
-    padding: 1.25rem 2.25rem; border: 1.5px solid var(--gold-border);
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid var(--gold-border);
     box-shadow: 0 4px 28px rgba(212,175,55,0.18), 0 0 0 5px rgba(212,175,55,0.06);
+    line-height: 0;
+    width: 100%;
+    max-width: 520px;
   }
-  .hero-logo-seal img { height: 100px; width: auto; display: block; }
+  .hero-logo-seal img { width: 100%; height: auto; display: block; }
 
   /* Extended reveal delays for hero stagger */
   .reveal-d5 { transition-delay: 0.5s; }
