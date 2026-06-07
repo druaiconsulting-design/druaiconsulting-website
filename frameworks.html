@@ -15,7 +15,6 @@
   :root {
     --navy: #0A2342;
     --navy-block: #1B4D8E;
-    --navy-hero: #0A2342;
     --gold: #D4AF37;
     --gold-light: rgba(212,175,55,0.12);
     --gold-border: rgba(212,175,55,0.25);
@@ -40,10 +39,6 @@
   @keyframes shimmer {
     0%   { background-position: 200% center; }
     100% { background-position: -200% center; }
-  }
-  @keyframes glowPulse {
-    0%, 100% { opacity: 0.6; }
-    50%       { opacity: 1; }
   }
 
   /* Scroll reveal — bidirectional, follows user throughout */
@@ -101,7 +96,7 @@
     min-height: 100vh; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     padding: 8rem 2rem 5rem; text-align: center; position: relative; overflow: hidden;
-    background: var(--navy-hero);
+    background: var(--navy);
   }
   .hero::before {
     content: ''; position: absolute; inset: 0;
@@ -165,19 +160,9 @@
 
   /* ── Journey — WARM WHITE ───────────────────────────────────────────────── */
   .journey { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
-  .sec-eyebrow {
-    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.62rem;
-    letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
-    text-align: center; margin-bottom: 0.75rem;
-  }
-  .sec-title {
-    font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    color: var(--navy); font-weight: 700; text-align: center; margin-bottom: 0.875rem;
-  }
-  .sec-sub {
-    font-size: 0.88rem; line-height: 1.8; color: var(--navy-text);
-    max-width: 520px; margin: 0 auto 3rem; text-align: center;
-  }
+  .sec-eyebrow { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 0.75rem; }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--navy); font-weight: 700; text-align: center; margin-bottom: 0.875rem; }
+  .sec-sub { font-size: 0.88rem; line-height: 1.8; color: var(--navy-text); max-width: 520px; margin: 0 auto 3rem; text-align: center; }
   .journey-steps { display: flex; flex-direction: column; gap: 1.1rem; }
   .jstep {
     display: flex; align-items: flex-start; gap: 1.1rem;
@@ -187,20 +172,12 @@
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
   .jstep:hover { border-color: var(--gold); box-shadow: 0 8px 28px rgba(212,175,55,0.12); transform: translateY(-2px); }
-  .jnum {
-    width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.88rem;
-  }
+  .jnum { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.88rem; }
   .jnum.g { background: var(--gold); color: #3a2e00; }
   .jnum.m { background: var(--magenta); color: #fff; }
   .jstep h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--navy); margin-bottom: 0.4rem; }
   .jstep p { font-size: 0.8rem; line-height: 1.7; color: var(--navy-text); margin-bottom: 0.5rem; }
-  .jtag {
-    display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700;
-    letter-spacing: 0.08em; padding: 2px 9px; border-radius: 20px;
-    background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold-border);
-  }
+  .jtag { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em; padding: 2px 9px; border-radius: 20px; background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold-border); }
   .jtag.m { background: var(--magenta-light); color: var(--magenta); border-color: rgba(194,24,91,0.3); }
 
   /* ── Frameworks — NAVY BLOCK ────────────────────────────────────────────── */
@@ -209,7 +186,6 @@
   .frameworks .sec-sub { color: var(--text-muted); }
   .fw-inner { max-width: 1100px; margin: 0 auto; }
   .fw-grid { display: flex; flex-direction: column; gap: 3rem; margin-top: 3.5rem; }
-
   .fw-card {
     background: rgba(255,255,255,0.05); border: 1px solid var(--gold-border);
     border-radius: 14px; overflow: hidden;
@@ -217,30 +193,14 @@
     transition: border-color 0.3s, box-shadow 0.3s;
   }
   .fw-card:hover { border-color: rgba(212,175,55,0.55); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
-
   .fw-image-side { position: relative; min-height: 320px; overflow: hidden; }
   .fw-image-side img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.5s ease; }
   .fw-card:hover .fw-image-side img { transform: scale(1.03); }
-  .fw-image-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, transparent 60%, rgba(10,35,66,0.6));
-  }
-  .fw-price-badge {
-    position: absolute; top: 14px; right: 14px;
-    background: rgba(10,35,66,0.92); border: 1px solid rgba(212,175,55,0.55);
-    border-radius: 10px; padding: 0.6rem 1.1rem;
-    backdrop-filter: blur(4px); text-align: right;
-  }
+  .fw-image-overlay { position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, rgba(10,35,66,0.6)); }
+  .fw-price-badge { position: absolute; top: 14px; right: 14px; background: rgba(10,35,66,0.92); border: 1px solid rgba(212,175,55,0.55); border-radius: 10px; padding: 0.6rem 1.1rem; backdrop-filter: blur(4px); text-align: right; }
   .fw-price-badge .price { font-family: 'Playfair Display', serif; color: var(--gold); font-weight: 700; font-size: 1.5rem; line-height: 1; }
   .fw-price-badge .price-sub { font-family: 'Montserrat', sans-serif; color: rgba(255,255,255,0.45); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
-  .fw-category-badge {
-    position: absolute; bottom: 14px; left: 14px;
-    font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.2rem 0.6rem; border-radius: 4px;
-    background: rgba(10,35,66,0.88);
-  }
-
+  .fw-category-badge { position: absolute; bottom: 14px; left: 14px; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(10,35,66,0.88); }
   .fw-content { padding: 2rem; display: flex; flex-direction: column; }
   .fw-name { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem; }
   .fw-tagline { font-family: 'Montserrat', sans-serif; color: var(--text-muted); font-size: 0.65rem; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
@@ -251,16 +211,7 @@
   .fw-pillar-dot { font-size: 0.65rem; margin-top: 2px; flex-shrink: 0; }
   .fw-pillar strong { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.76rem; color: #fff; }
   .fw-pillar span { font-size: 0.74rem; color: var(--text-muted); }
-  .fw-ideal {
-    background: rgba(212,175,55,0.05); border: 1px solid var(--gold-border);
-    border-radius: 8px; padding: 0.75rem 0.875rem; margin-bottom: 1rem;
-  }
-  .fw-ideal-lbl { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
-  .fw-ideal p { font-size: 0.75rem; line-height: 1.6; color: var(--text-muted); }
-  .fw-pricing {
-    background: rgba(255,255,255,0.04); border: 1px solid var(--gold-border);
-    border-radius: 8px; padding: 0.875rem; margin-bottom: 1rem;
-  }
+  .fw-pricing { background: rgba(255,255,255,0.04); border: 1px solid var(--gold-border); border-radius: 8px; padding: 0.875rem; margin-bottom: 1rem; }
   .fw-pricing-lbl { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
   .fw-pricing-row { display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0; border-top: 0.5px solid var(--gold-border); }
   .fw-pricing-row .label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(230,230,230,0.55); }
@@ -279,8 +230,6 @@
     border-radius: 6px; pointer-events: none;
   }
   .fw-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-
-  /* Reverse layout */
   .fw-card.reverse { grid-template-columns: 1fr 1fr; }
   .fw-card.reverse .fw-image-side { order: 2; }
   .fw-card.reverse .fw-image-side .fw-image-overlay { background: linear-gradient(to left, transparent 60%, rgba(10,35,66,0.6)); }
@@ -291,26 +240,13 @@
     padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden;
     background: var(--warm-white);
   }
-  .cta-sec::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .cta-sec h2 {
-    font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.75rem);
-    color: var(--navy); font-weight: 700; margin-bottom: 1rem; position: relative;
-  }
+  .cta-sec::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 65%); pointer-events: none; }
+  .cta-sec h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.75rem); color: var(--navy); font-weight: 700; margin-bottom: 1rem; position: relative; }
   .cta-sec p { font-size: 0.9rem; line-height: 1.8; color: var(--navy-text); max-width: 480px; margin: 0 auto 2.5rem; position: relative; }
   .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
 
   /* ── Footer — NAVY BLOCK ────────────────────────────────────────────────── */
-  footer {
-    text-align: center; padding: 1.5rem;
-    background: var(--navy-block);
-    border-top: 1px solid var(--gold-border);
-    font-family: 'Montserrat', sans-serif; font-size: 0.62rem;
-    letter-spacing: 0.06em; color: rgba(255,255,255,0.3);
-  }
+  footer { text-align: center; padding: 1.5rem; background: var(--navy-block); border-top: 1px solid var(--gold-border); font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.3); }
 
   @media (max-width: 768px) {
     .fw-card, .fw-card.reverse { grid-template-columns: 1fr; }
@@ -318,19 +254,17 @@
     .fw-card.reverse .fw-content { order: 2; }
     .fw-image-side { min-height: 220px; }
     .fw-image-overlay { background: linear-gradient(to top, rgba(10,35,66,0.7) 0%, transparent 60%) !important; }
-    .reveal, .reveal-left, .reveal-right { transform: translateY(28px) scale(0.98); }
   }
 </style>
 </head>
 <body>
 
-<!-- ── Nav ──────────────────────────────────────────────────────────────────── -->
 <nav>
   <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663512997684/3v5s3xyNxqpHhQbaaqucFJ/dru-clear-logo-transparent_fdbc9d32.png" alt="DRU CLEAR™" />
   <a href="https://assessment.druaiconsulting.com" class="nav-cta">Take the Free Assessment →</a>
 </nav>
 
-<!-- ── Hero — NAVY BLOCK ─────────────────────────────────────────────────────── -->
+<!-- Hero — NAVY BLOCK -->
 <section class="hero">
   <p class="eyebrow">DRU AI Leadership Ecosystem™</p>
   <h1>Every Transformation Begins<br>with <span>Clarity.</span></h1>
@@ -341,7 +275,7 @@
   </div>
 </section>
 
-<!-- ── Pathway — NAVY BLOCK ──────────────────────────────────────────────────── -->
+<!-- Pathway — NAVY BLOCK -->
 <section class="pathway">
   <p class="eyebrow reveal">The DRU AI Transformation Pathway™</p>
   <h2 class="reveal reveal-d1">Every client walks the same five stages.</h2>
@@ -355,7 +289,7 @@
   </div>
 </section>
 
-<!-- ── Journey — WARM WHITE ──────────────────────────────────────────────────── -->
+<!-- Journey — WARM WHITE -->
 <section class="journey">
   <p class="sec-eyebrow reveal">The Client Journey</p>
   <h2 class="sec-title reveal reveal-d1">How transformation actually works.</h2>
@@ -388,7 +322,7 @@
   </div>
 </section>
 
-<!-- ── Frameworks — NAVY BLOCK ───────────────────────────────────────────────── -->
+<!-- Frameworks — NAVY BLOCK -->
 <section class="frameworks" id="frameworks">
   <div class="fw-inner">
     <p class="sec-eyebrow reveal">The Four Frameworks</p>
@@ -531,7 +465,7 @@
   </div>
 </section>
 
-<!-- ── CTA — WARM WHITE ───────────────────────────────────────────────────────── -->
+<!-- CTA — WARM WHITE -->
 <section class="cta-sec">
   <h2 class="reveal">Every journey starts<br>with the assessment.</h2>
   <p class="reveal reveal-d1">Discover your gaps. See where you are. Define where you are destined to be. It takes 3 minutes and it's completely free.</p>
@@ -543,7 +477,7 @@
 <footer>© 2026 DRU CLEAR™ · All Rights Reserved · DRU AI Consulting</footer>
 
 <script>
-  // ── Scroll reveal — bidirectional, follows user throughout ─────────────────
+  // Scroll reveal — bidirectional, follows user throughout
   const _revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -555,7 +489,7 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => _revealObs.observe(el));
 
-  // ── Nav scroll shadow ──────────────────────────────────────────────────────
+  // Nav scroll shadow
   window.addEventListener('scroll', function () {
     document.querySelector('nav').style.boxShadow =
       window.scrollY > 50 ? '0 4px 28px rgba(0,0,0,0.22)' : 'none';
