@@ -14,27 +14,77 @@
 <style>
   :root {
     --navy: #0A2342;
-    --navy-dark: #061829;
+    --navy-block: #1B4D8E;
+    --navy-hero: #0A2342;
     --gold: #D4AF37;
     --gold-light: rgba(212,175,55,0.12);
     --gold-border: rgba(212,175,55,0.25);
     --magenta: #C2185B;
     --magenta-light: rgba(194,24,91,0.12);
     --blue: #1E88E5;
+    --warm-white: #FAFAF8;
     --text: #E6E6E6;
     --text-muted: rgba(230,230,230,0.55);
+    --navy-text: rgba(10,35,66,0.65);
+    --navy-text-muted: rgba(10,35,66,0.45);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--navy); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  html { scroll-behavior: smooth; background: var(--warm-white) !important; }
+  body { background: var(--warm-white) !important; color: var(--navy); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-  /* ── Nav ── */
+  /* ── Animations ─────────────────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.6; }
+    50%       { opacity: 1; }
+  }
+
+  /* Scroll reveal — bidirectional, follows user throughout */
+  .reveal {
+    opacity: 0; transform: translateY(42px) scale(0.97);
+    transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0) scale(1); }
+  .reveal-left {
+    opacity: 0; transform: translateX(-44px);
+    transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal-left.in-view { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0; transform: translateX(44px);
+    transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal-right.in-view { opacity: 1; transform: translateX(0); }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.18s; }
+  .reveal-d3 { transition-delay: 0.28s; }
+  .reveal-d4 { transition-delay: 0.38s; }
+
+  /* CTA shimmer */
+  .btn-mag { position: relative; overflow: hidden; }
+  .btn-mag::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3.5s ease-in-out infinite;
+    border-radius: 6px; pointer-events: none;
+  }
+
+  /* ── Nav — NAVY BLOCK ───────────────────────────────────────────────────── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(6,24,41,0.97); backdrop-filter: blur(12px);
+    background: rgba(27,77,142,0.97); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--gold-border);
     padding: 0 2rem; height: 60px;
     display: flex; align-items: center; justify-content: space-between;
+    transition: box-shadow 0.3s;
   }
   nav img { height: 36px; width: auto; }
   .nav-cta {
@@ -42,20 +92,21 @@
     font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.5rem 1.25rem; border-radius: 4px; text-decoration: none;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, transform 0.2s;
   }
-  .nav-cta:hover { opacity: 0.85; }
+  .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
 
-  /* ── Hero ── */
+  /* ── Hero — NAVY BLOCK ──────────────────────────────────────────────────── */
   .hero {
     min-height: 100vh; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     padding: 8rem 2rem 5rem; text-align: center; position: relative; overflow: hidden;
+    background: var(--navy-hero);
   }
   .hero::before {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.06) 0%, transparent 65%),
-                radial-gradient(ellipse at 80% 80%, rgba(194,24,91,0.05) 0%, transparent 50%);
+    background: radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.07) 0%, transparent 65%),
+                radial-gradient(ellipse at 80% 80%, rgba(194,24,91,0.06) 0%, transparent 50%);
   }
   .eyebrow {
     font-family: 'Montserrat', sans-serif; font-weight: 700;
@@ -70,7 +121,7 @@
     opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
   }
   .hero h1 span { color: var(--gold); }
-  .hero p {
+  .hero > p {
     font-size: clamp(0.88rem, 1.5vw, 1rem); line-height: 1.8;
     color: var(--text-muted); max-width: 580px; margin-bottom: 2.5rem; position: relative;
     opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards;
@@ -84,21 +135,21 @@
     font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.95rem 2rem; border-radius: 6px; text-decoration: none;
-    transition: all 0.2s; border: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; display: inline-block;
   }
-  .btn-mag:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(194,24,91,0.35); }
+  .btn-mag:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(194,24,91,0.4); }
   .btn-outline {
     background: transparent; color: var(--gold);
     font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.95rem 2rem; border-radius: 6px; text-decoration: none;
-    transition: all 0.2s; border: 1px solid rgba(212,175,55,0.4);
+    transition: all 0.2s; border: 1px solid rgba(212,175,55,0.4); display: inline-block;
   }
   .btn-outline:hover { background: var(--gold-light); }
 
-  /* ── Pathway ── */
+  /* ── Pathway — NAVY BLOCK ───────────────────────────────────────────────── */
   .pathway {
-    padding: 4rem 2rem; background: var(--navy-dark); text-align: center;
+    padding: 4rem 2rem; background: var(--navy-block); text-align: center;
     border-top: 1px solid var(--gold-border); border-bottom: 1px solid var(--gold-border);
   }
   .pathway .eyebrow { animation: none; opacity: 1; }
@@ -112,18 +163,30 @@
   .ps.mag { border-color: var(--magenta); color: var(--magenta); }
   .pa { color: rgba(212,175,55,0.4); margin: 0 3px; font-size: 0.9rem; }
 
-  /* ── Journey ── */
+  /* ── Journey — WARM WHITE ───────────────────────────────────────────────── */
   .journey { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
-  .sec-eyebrow { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 0.75rem; }
-  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: #fff; font-weight: 700; text-align: center; margin-bottom: 0.875rem; }
-  .sec-sub { font-size: 0.88rem; line-height: 1.8; color: var(--text-muted); max-width: 520px; margin: 0 auto 3rem; text-align: center; }
+  .sec-eyebrow {
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.62rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+    text-align: center; margin-bottom: 0.75rem;
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: var(--navy); font-weight: 700; text-align: center; margin-bottom: 0.875rem;
+  }
+  .sec-sub {
+    font-size: 0.88rem; line-height: 1.8; color: var(--navy-text);
+    max-width: 520px; margin: 0 auto 3rem; text-align: center;
+  }
   .journey-steps { display: flex; flex-direction: column; gap: 1.1rem; }
   .jstep {
     display: flex; align-items: flex-start; gap: 1.1rem;
-    background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border);
-    border-radius: 10px; padding: 1.5rem; transition: border-color 0.2s;
+    background: #fff; border: 1px solid rgba(10,35,66,0.1);
+    border-radius: 10px; padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(10,35,66,0.06);
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
-  .jstep:hover { border-color: rgba(212,175,55,0.5); }
+  .jstep:hover { border-color: var(--gold); box-shadow: 0 8px 28px rgba(212,175,55,0.12); transform: translateY(-2px); }
   .jnum {
     width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
@@ -131,8 +194,8 @@
   }
   .jnum.g { background: var(--gold); color: #3a2e00; }
   .jnum.m { background: var(--magenta); color: #fff; }
-  .jstep h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.92rem; color: #fff; margin-bottom: 0.4rem; }
-  .jstep p { font-size: 0.8rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .jstep h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--navy); margin-bottom: 0.4rem; }
+  .jstep p { font-size: 0.8rem; line-height: 1.7; color: var(--navy-text); margin-bottom: 0.5rem; }
   .jtag {
     display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700;
     letter-spacing: 0.08em; padding: 2px 9px; border-radius: 20px;
@@ -140,25 +203,24 @@
   }
   .jtag.m { background: var(--magenta-light); color: var(--magenta); border-color: rgba(194,24,91,0.3); }
 
-  /* ── Frameworks ── */
-  .frameworks { padding: 5rem 2rem; background: var(--navy-dark); }
+  /* ── Frameworks — NAVY BLOCK ────────────────────────────────────────────── */
+  .frameworks { padding: 5rem 2rem; background: var(--navy-block); }
+  .frameworks .sec-title { color: #fff; }
+  .frameworks .sec-sub { color: var(--text-muted); }
   .fw-inner { max-width: 1100px; margin: 0 auto; }
   .fw-grid { display: flex; flex-direction: column; gap: 3rem; margin-top: 3.5rem; }
 
   .fw-card {
-    background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border);
+    background: rgba(255,255,255,0.05); border: 1px solid var(--gold-border);
     border-radius: 14px; overflow: hidden;
     display: grid; grid-template-columns: 1fr 1fr;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
-  .fw-card:hover { border-color: rgba(212,175,55,0.5); }
+  .fw-card:hover { border-color: rgba(212,175,55,0.55); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
 
-  /* Image side */
   .fw-image-side { position: relative; min-height: 320px; overflow: hidden; }
-  .fw-image-side img {
-    width: 100%; height: 100%; object-fit: cover; object-position: center top;
-    display: block;
-  }
+  .fw-image-side img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.5s ease; }
+  .fw-card:hover .fw-image-side img { transform: scale(1.03); }
   .fw-image-overlay {
     position: absolute; inset: 0;
     background: linear-gradient(to right, transparent 60%, rgba(10,35,66,0.6));
@@ -169,14 +231,8 @@
     border-radius: 10px; padding: 0.6rem 1.1rem;
     backdrop-filter: blur(4px); text-align: right;
   }
-  .fw-price-badge .price {
-    font-family: 'Playfair Display', serif; color: var(--gold);
-    font-weight: 700; font-size: 1.5rem; line-height: 1;
-  }
-  .fw-price-badge .price-sub {
-    font-family: 'Montserrat', sans-serif; color: rgba(255,255,255,0.45);
-    font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px;
-  }
+  .fw-price-badge .price { font-family: 'Playfair Display', serif; color: var(--gold); font-weight: 700; font-size: 1.5rem; line-height: 1; }
+  .fw-price-badge .price-sub { font-family: 'Montserrat', sans-serif; color: rgba(255,255,255,0.45); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
   .fw-category-badge {
     position: absolute; bottom: 14px; left: 14px;
     font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700;
@@ -185,7 +241,6 @@
     background: rgba(10,35,66,0.88);
   }
 
-  /* Content side */
   .fw-content { padding: 2rem; display: flex; flex-direction: column; }
   .fw-name { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem; }
   .fw-tagline { font-family: 'Montserrat', sans-serif; color: var(--text-muted); font-size: 0.65rem; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
@@ -202,8 +257,6 @@
   }
   .fw-ideal-lbl { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
   .fw-ideal p { font-size: 0.75rem; line-height: 1.6; color: var(--text-muted); }
-
-  /* Pricing block */
   .fw-pricing {
     background: rgba(255,255,255,0.04); border: 1px solid var(--gold-border);
     border-radius: 8px; padding: 0.875rem; margin-bottom: 1rem;
@@ -212,43 +265,51 @@
   .fw-pricing-row { display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0; border-top: 0.5px solid var(--gold-border); }
   .fw-pricing-row .label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(230,230,230,0.55); }
   .fw-pricing-row .val { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: rgba(230,230,230,0.7); }
-
   .fw-btn {
     display: block; text-align: center; background: var(--magenta); color: #fff;
     font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 0.875rem; border-radius: 6px; text-decoration: none; transition: opacity 0.2s;
+    padding: 0.875rem; border-radius: 6px; text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s; position: relative; overflow: hidden;
   }
-  .fw-btn:hover { opacity: 0.85; }
+  .fw-btn::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    background-size: 200% 100%; animation: shimmer 3.5s ease-in-out infinite;
+    border-radius: 6px; pointer-events: none;
+  }
+  .fw-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
-  /* Reverse layout for alternating cards */
+  /* Reverse layout */
   .fw-card.reverse { grid-template-columns: 1fr 1fr; }
   .fw-card.reverse .fw-image-side { order: 2; }
-  .fw-card.reverse .fw-image-side .fw-image-overlay {
-    background: linear-gradient(to left, transparent 60%, rgba(10,35,66,0.6));
-  }
+  .fw-card.reverse .fw-image-side .fw-image-overlay { background: linear-gradient(to left, transparent 60%, rgba(10,35,66,0.6)); }
   .fw-card.reverse .fw-content { order: 1; }
 
-  /* ── CTA ── */
+  /* ── CTA — WARM WHITE ───────────────────────────────────────────────────── */
   .cta-sec {
     padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden;
+    background: var(--warm-white);
   }
   .cta-sec::before {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.07) 0%, transparent 65%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 65%);
+    pointer-events: none;
   }
   .cta-sec h2 {
     font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.75rem);
-    color: #fff; font-weight: 700; margin-bottom: 1rem; position: relative;
+    color: var(--navy); font-weight: 700; margin-bottom: 1rem; position: relative;
   }
-  .cta-sec p { font-size: 0.9rem; line-height: 1.8; color: var(--text-muted); max-width: 480px; margin: 0 auto 2.5rem; position: relative; }
+  .cta-sec p { font-size: 0.9rem; line-height: 1.8; color: var(--navy-text); max-width: 480px; margin: 0 auto 2.5rem; position: relative; }
   .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
 
-  footer { text-align: center; padding: 1.5rem; border-top: 1px solid var(--gold-border); font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.2); }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* ── Footer — NAVY BLOCK ────────────────────────────────────────────────── */
+  footer {
+    text-align: center; padding: 1.5rem;
+    background: var(--navy-block);
+    border-top: 1px solid var(--gold-border);
+    font-family: 'Montserrat', sans-serif; font-size: 0.62rem;
+    letter-spacing: 0.06em; color: rgba(255,255,255,0.3);
   }
 
   @media (max-width: 768px) {
@@ -257,17 +318,19 @@
     .fw-card.reverse .fw-content { order: 2; }
     .fw-image-side { min-height: 220px; }
     .fw-image-overlay { background: linear-gradient(to top, rgba(10,35,66,0.7) 0%, transparent 60%) !important; }
+    .reveal, .reveal-left, .reveal-right { transform: translateY(28px) scale(0.98); }
   }
 </style>
 </head>
 <body>
 
+<!-- ── Nav ──────────────────────────────────────────────────────────────────── -->
 <nav>
   <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663512997684/3v5s3xyNxqpHhQbaaqucFJ/dru-clear-logo-transparent_fdbc9d32.png" alt="DRU CLEAR™" />
   <a href="https://assessment.druaiconsulting.com" class="nav-cta">Take the Free Assessment →</a>
 </nav>
 
-<!-- Hero -->
+<!-- ── Hero — NAVY BLOCK ─────────────────────────────────────────────────────── -->
 <section class="hero">
   <p class="eyebrow">DRU AI Leadership Ecosystem™</p>
   <h1>Every Transformation Begins<br>with <span>Clarity.</span></h1>
@@ -278,12 +341,12 @@
   </div>
 </section>
 
-<!-- Pathway -->
+<!-- ── Pathway — NAVY BLOCK ──────────────────────────────────────────────────── -->
 <section class="pathway">
-  <p class="eyebrow">The DRU AI Transformation Pathway™</p>
-  <h2>Every client walks the same five stages.</h2>
-  <p>No shortcuts. No skipped steps. This is the proven sequence that moves organizations from awareness to full AI activation.</p>
-  <div class="pathway-steps">
+  <p class="eyebrow reveal">The DRU AI Transformation Pathway™</p>
+  <h2 class="reveal reveal-d1">Every client walks the same five stages.</h2>
+  <p class="reveal reveal-d2">No shortcuts. No skipped steps. This is the proven sequence that moves organizations from awareness to full AI activation.</p>
+  <div class="pathway-steps reveal reveal-d3">
     <span class="ps">Discover</span><span class="pa">›</span>
     <span class="ps">Diagnose</span><span class="pa">›</span>
     <span class="ps">Design</span><span class="pa">›</span>
@@ -292,13 +355,13 @@
   </div>
 </section>
 
-<!-- Journey -->
+<!-- ── Journey — WARM WHITE ──────────────────────────────────────────────────── -->
 <section class="journey">
-  <p class="sec-eyebrow">The Client Journey</p>
-  <h2 class="sec-title">How transformation actually works.</h2>
-  <p class="sec-sub">Understanding where you are determines where to start. Every client walks this path.</p>
+  <p class="sec-eyebrow reveal">The Client Journey</p>
+  <h2 class="sec-title reveal reveal-d1">How transformation actually works.</h2>
+  <p class="sec-sub reveal reveal-d2">Understanding where you are determines where to start. Every client walks this path.</p>
   <div class="journey-steps">
-    <div class="jstep">
+    <div class="jstep reveal reveal-d1">
       <div class="jnum g">1</div>
       <div>
         <h3>Take the Free Assessment</h3>
@@ -306,7 +369,7 @@
         <span class="jtag">Pathway Stage: Discover</span>
       </div>
     </div>
-    <div class="jstep">
+    <div class="jstep reveal reveal-d2">
       <div class="jnum g">2</div>
       <div>
         <h3>Complete Your Diagnostic</h3>
@@ -314,7 +377,7 @@
         <span class="jtag">Pathway Stages: Diagnose + Design</span>
       </div>
     </div>
-    <div class="jstep">
+    <div class="jstep reveal reveal-d3">
       <div class="jnum m">3</div>
       <div>
         <h3>Activate Your Frameworks</h3>
@@ -325,17 +388,17 @@
   </div>
 </section>
 
-<!-- Frameworks -->
+<!-- ── Frameworks — NAVY BLOCK ───────────────────────────────────────────────── -->
 <section class="frameworks" id="frameworks">
   <div class="fw-inner">
-    <p class="sec-eyebrow">The Four Frameworks</p>
-    <h2 class="sec-title">Original IP. Proven Results.</h2>
-    <p class="sec-sub" style="text-align:center;margin-left:auto;margin-right:auto;">Each framework addresses a distinct dimension of AI leadership transformation. Together they form a complete ecosystem.</p>
+    <p class="sec-eyebrow reveal">The Four Frameworks</p>
+    <h2 class="sec-title reveal reveal-d1">Original IP. Proven Results.</h2>
+    <p class="sec-sub reveal reveal-d2" style="text-align:center;margin-left:auto;margin-right:auto;">Each framework addresses a distinct dimension of AI leadership transformation. Together they form a complete ecosystem.</p>
 
     <div class="fw-grid">
 
       <!-- DRU CLEAR™ -->
-      <div class="fw-card">
+      <div class="fw-card reveal">
         <div class="fw-image-side">
           <img src="https://raw.githubusercontent.com/druaiconsulting-design/dru-clear-app/main/client/public/DRU%20CLEAR%20.png" alt="DRU CLEAR™" />
           <div class="fw-image-overlay"></div>
@@ -367,7 +430,7 @@
       </div>
 
       <!-- 5C Cultural DNA™ -->
-      <div class="fw-card reverse">
+      <div class="fw-card reverse reveal reveal-d1">
         <div class="fw-image-side">
           <img src="https://raw.githubusercontent.com/druaiconsulting-design/dru-clear-app/main/client/public/5C%20.png" alt="5C Cultural DNA™" />
           <div class="fw-image-overlay"></div>
@@ -400,7 +463,7 @@
       </div>
 
       <!-- 5D Leadership™ -->
-      <div class="fw-card">
+      <div class="fw-card reveal">
         <div class="fw-image-side">
           <img src="https://raw.githubusercontent.com/druaiconsulting-design/dru-clear-app/main/client/public/5D%20Leadership%20visual%20model%20design.png" alt="5D Leadership™" />
           <div class="fw-image-overlay"></div>
@@ -432,7 +495,7 @@
       </div>
 
       <!-- AI Sales Mastery™ -->
-      <div class="fw-card reverse">
+      <div class="fw-card reverse reveal reveal-d1">
         <div class="fw-image-side">
           <img src="https://raw.githubusercontent.com/druaiconsulting-design/dru-clear-app/main/client/public/AI%20Sales%20Mastery%20framework%20infographic.png" alt="AI Sales Mastery™" />
           <div class="fw-image-overlay"></div>
@@ -468,16 +531,36 @@
   </div>
 </section>
 
-<!-- CTA -->
+<!-- ── CTA — WARM WHITE ───────────────────────────────────────────────────────── -->
 <section class="cta-sec">
-  <h2>Every journey starts<br>with the assessment.</h2>
-  <p>Discover your gaps. See where you are. Define where you are destined to be. It takes 3 minutes and it's completely free.</p>
-  <div class="cta-btns">
+  <h2 class="reveal">Every journey starts<br>with the assessment.</h2>
+  <p class="reveal reveal-d1">Discover your gaps. See where you are. Define where you are destined to be. It takes 3 minutes and it's completely free.</p>
+  <div class="cta-btns reveal reveal-d2">
     <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free Assessment →</a>
   </div>
 </section>
 
 <footer>© 2026 DRU CLEAR™ · All Rights Reserved · DRU AI Consulting</footer>
+
+<script>
+  // ── Scroll reveal — bidirectional, follows user throughout ─────────────────
+  const _revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+      } else {
+        e.target.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => _revealObs.observe(el));
+
+  // ── Nav scroll shadow ──────────────────────────────────────────────────────
+  window.addEventListener('scroll', function () {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 50 ? '0 4px 28px rgba(0,0,0,0.22)' : 'none';
+  }, { passive: true });
+</script>
 
 </body>
 </html>
