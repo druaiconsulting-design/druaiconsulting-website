@@ -66,22 +66,42 @@
     50%       { opacity: 0.85; transform: scale(1.08); }
   }
 
-  /* Hero logo frame */
-  .hero-logo { margin-bottom: 1.5rem; }
-  .hero-logo-frame { display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.94); border: 1.5px solid var(--gold-border); border-radius: 16px; padding: 0.7rem 1.75rem; box-shadow: 0 2px 20px rgba(212,175,55,0.13), 0 1px 6px rgba(10,35,66,0.05); }
-  .hero-logo-frame img { height: 62px; width: auto; display: block; }
+  /* Hero logo seal — navy background fixes transparency, rounded for intent */
+  .hero-logo { margin-bottom: 1.75rem; }
+  .hero-logo-seal {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--navy); border-radius: 20px;
+    padding: 1rem 2rem; border: 1.5px solid var(--gold-border);
+    box-shadow: 0 4px 28px rgba(212,175,55,0.18), 0 0 0 5px rgba(212,175,55,0.06);
+    margin-bottom: 0.65rem;
+  }
+  .hero-logo-seal img { height: 62px; width: auto; display: block; }
+  .hero-logo-tag {
+    font-family: 'Montserrat', sans-serif; font-size: 0.63rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+    text-align: left;
+  }
 
   /* Extended reveal delays for hero stagger */
   .reveal-d5 { transition-delay: 0.5s; }
   .reveal-d6 { transition-delay: 0.62s; }
 
-  /* Scroll reveal */
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
-  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  /* Scroll reveal — bidirectional, dramatic, follows user throughout */
+  .reveal {
+    opacity: 0; transform: translateY(42px) scale(0.97);
+    transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0) scale(1); }
+  .reveal-left { opacity: 0; transform: translateX(-44px); transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1); }
+  .reveal-left.in-view { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(44px); transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1); }
+  .reveal-right.in-view { opacity: 1; transform: translateX(0); }
   .reveal-d1 { transition-delay: 0.08s; }
   .reveal-d2 { transition-delay: 0.18s; }
   .reveal-d3 { transition-delay: 0.28s; }
   .reveal-d4 { transition-delay: 0.38s; }
+  .reveal-d5 { transition-delay: 0.5s; }
+  .reveal-d6 { transition-delay: 0.62s; }
 
   /* Floating glow element */
   .float { animation: floatY 5s ease-in-out infinite; }
@@ -298,9 +318,8 @@
 
 <!-- ── Nav ──────────────────────────────────────────────────────────────────── -->
 <nav>
-  <a href="#hero" style="text-decoration:none;display:flex;flex-direction:column;line-height:1.15;">
-    <span style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--gold);letter-spacing:0.02em;">DRU AI Consulting</span>
-    <span style="font-family:'Montserrat',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(212,175,55,0.55);">AI Mastery · Leadership Clarity · Results</span>
+  <a href="#hero" style="text-decoration:none;">
+    <span style="font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--gold);letter-spacing:0.02em;">DRU AI Consulting</span>
   </a>
   <div class="nav-links">
     <a href="#about">About</a>
@@ -322,9 +341,10 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-logo reveal">
-        <div class="hero-logo-frame">
+        <div class="hero-logo-seal">
           <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663512997684/PPrwKSVlySJjkhTX.png" alt="DRU AI Consulting" />
         </div>
+        <p class="hero-logo-tag">AI Mastery · Leadership Clarity · Measurable Results</p>
       </div>
       <h1 class="reveal reveal-d1">Where <span>Leadership</span><br>Meets AI</h1>
       <p class="reveal reveal-d2">Helping organizations and leaders identify exactly where their gaps are — and building a clear, personalized pathway to close them.</p>
@@ -615,15 +635,15 @@
     <h2 class="sec-title" style="text-align:center;">Frequently Asked Questions</h2>
     <div class="divider center"></div>
   </div>
-  <div class="faq-list reveal reveal-d1">
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>I'm not technical. Can I still benefit from working with DRU AI Consulting?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Absolutely — and you don't need to be. Leadership is the core of everything we do; AI is the accelerant. Our work is not about turning you into a technologist. It's about equipping you to lead confidently in an AI-driven world, ask the right questions, make informed decisions, and build a culture where your organization can move forward with clarity. If you can lead people, we can help you lead with AI.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>How is DRU AI Consulting different from just buying AI software or tools?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Tools don't transform organizations — leaders do. Any software vendor can sell you a platform. What they cannot give you is the leadership alignment, cultural readiness, strategic vision, and implementation discipline required to make that platform actually deliver results. DRU AI Consulting bridges the gap between what AI can do and what your organization is ready to execute. We don't sell tools. We build the leadership infrastructure that makes tools work.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What does the DRU CLEAR™ AI Readiness Assessment actually tell me?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">The DRU CLEAR™ assessment gives you a clear, honest picture of where your organization stands across five critical dimensions of AI readiness. You'll discover where your strengths are, where the gaps exist, and what those gaps are costing you. Most importantly, it tells you exactly where to focus first — so your next step is always a strategic one, not a guess. It's free, it's fast, and it's the starting point for everything we do together.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>How long before we see real results?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">It depends on where you are starting and what you are building toward — and we will be honest with you about that from day one. What we can tell you is that we define success metrics before any engagement begins, not after. You will always know what we are working toward, how we are measuring it, and whether we are on track. We do not consider an engagement complete until the transformation is real — not just on paper.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>How does DRU AI Consulting protect the confidentiality of my organization's information?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Every engagement is governed by strict professional confidentiality. Your organizational data, strategic challenges, and internal insights are handled with the utmost discretion and integrity. We have built our reputation on trust, and we take it seriously. Your information is secure, your confidence is protected, and our commitment to that standard remains unwavering.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>Do you work with organizations that have never used AI before?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Yes — and some of our most impactful work happens at exactly that starting point. There is no prerequisite for working with us other than a genuine commitment to moving forward. Whether your organization is just beginning to explore AI or already has some initiatives underway, our process meets you where you are and builds from there. The DRU CLEAR™ assessment is specifically designed to give any organization — regardless of where they start — a clear, personalized path forward.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What happens after the free assessment?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Your assessment results give you immediate clarity on where you stand. From there, the natural next step is a DRU CLEAR™ AI Leadership Diagnostic — either our Standard or Executive option — which goes deeper into your specific gaps and delivers a personalized roadmap for what to do next.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What is the DRU AI Consulting Satisfaction Guarantee?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Our commitment is simple: we do not consider our work done until your outcomes are real. Every engagement includes clearly defined success metrics, ongoing accountability, and post-engagement support to ensure that what we build together continues to deliver results. We stand behind our work — not just during the engagement, but after it. That is not a policy. That is how we operate.</div></div></div>
+  <div class="faq-list">
+    <div class="faq-item reveal reveal-d1"><button class="faq-q" onclick="toggleFaq(this)"><span>I'm not technical. Can I still benefit from working with DRU AI Consulting?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Absolutely — and you don't need to be. Leadership is the core of everything we do; AI is the accelerant. Our work is not about turning you into a technologist. It's about equipping you to lead confidently in an AI-driven world, ask the right questions, make informed decisions, and build a culture where your organization can move forward with clarity. If you can lead people, we can help you lead with AI.</div></div></div>
+    <div class="faq-item reveal reveal-d2"><button class="faq-q" onclick="toggleFaq(this)"><span>How is DRU AI Consulting different from just buying AI software or tools?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Tools don't transform organizations — leaders do. Any software vendor can sell you a platform. What they cannot give you is the leadership alignment, cultural readiness, strategic vision, and implementation discipline required to make that platform actually deliver results. DRU AI Consulting bridges the gap between what AI can do and what your organization is ready to execute. We don't sell tools. We build the leadership infrastructure that makes tools work.</div></div></div>
+    <div class="faq-item reveal reveal-d3"><button class="faq-q" onclick="toggleFaq(this)"><span>What does the DRU CLEAR™ AI Readiness Assessment actually tell me?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">The DRU CLEAR™ assessment gives you a clear, honest picture of where your organization stands across five critical dimensions of AI readiness. You'll discover where your strengths are, where the gaps exist, and what those gaps are costing you. Most importantly, it tells you exactly where to focus first — so your next step is always a strategic one, not a guess. It's free, it's fast, and it's the starting point for everything we do together.</div></div></div>
+    <div class="faq-item reveal reveal-d4"><button class="faq-q" onclick="toggleFaq(this)"><span>How long before we see real results?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">It depends on where you are starting and what you are building toward — and we will be honest with you about that from day one. What we can tell you is that we define success metrics before any engagement begins, not after. You will always know what we are working toward, how we are measuring it, and whether we are on track. We do not consider an engagement complete until the transformation is real — not just on paper.</div></div></div>
+    <div class="faq-item reveal reveal-d1"><button class="faq-q" onclick="toggleFaq(this)"><span>How does DRU AI Consulting protect the confidentiality of my organization's information?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Every engagement is governed by strict professional confidentiality. Your organizational data, strategic challenges, and internal insights are handled with the utmost discretion and integrity. We have built our reputation on trust, and we take it seriously. Your information is secure, your confidence is protected, and our commitment to that standard remains unwavering.</div></div></div>
+    <div class="faq-item reveal reveal-d2"><button class="faq-q" onclick="toggleFaq(this)"><span>Do you work with organizations that have never used AI before?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Yes — and some of our most impactful work happens at exactly that starting point. There is no prerequisite for working with us other than a genuine commitment to moving forward. Whether your organization is just beginning to explore AI or already has some initiatives underway, our process meets you where you are and builds from there. The DRU CLEAR™ assessment is specifically designed to give any organization — regardless of where they start — a clear, personalized path forward.</div></div></div>
+    <div class="faq-item reveal reveal-d3"><button class="faq-q" onclick="toggleFaq(this)"><span>What happens after the free assessment?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Your assessment results give you immediate clarity on where you stand. From there, the natural next step is a DRU CLEAR™ AI Leadership Diagnostic — either our Standard or Executive option — which goes deeper into your specific gaps and delivers a personalized roadmap for what to do next.</div></div></div>
+    <div class="faq-item reveal reveal-d4"><button class="faq-q" onclick="toggleFaq(this)"><span>What is the DRU AI Consulting Satisfaction Guarantee?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">Our commitment is simple: we do not consider our work done until your outcomes are real. Every engagement includes clearly defined success metrics, ongoing accountability, and post-engagement support to ensure that what we build together continues to deliver results. We stand behind our work — not just during the engagement, but after it. That is not a policy. That is how we operate.</div></div></div>
   </div>
   <div style="text-align:center;margin-top:3rem;" class="reveal">
     <a href="https://assessment.druaiconsulting.com" class="btn-mag">Take the Free AI Readiness Assessment</a>
@@ -725,8 +745,8 @@
         e.target.classList.remove('in-view');
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => _revealObs.observe(el));
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => _revealObs.observe(el));
 
   // ── Animated counter — 240+ ────────────────────────────────────────────────
   (function () {
