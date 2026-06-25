@@ -322,7 +322,7 @@
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#frameworks">Frameworks</a>
-    <a href="#newsletter">Newsletter</a>
+    <a href="#newsletter">Blog</a>
     <a href="#contact">Contact</a>
     <a href="https://assessment.druaiconsulting.com" class="nav-cta">Take the Assessment</a>
   </div>
@@ -456,10 +456,9 @@
 <!-- ── Newsletter — warm white ────────────────────────────────────────────────── -->
 <section id="newsletter" style="padding:6rem 2rem;background:var(--warm-white);border-top:1px solid rgba(10,35,66,0.07);">
   <div style="max-width:560px;margin:0 auto;text-align:center;">
-    <span class="eyebrow reveal" style="display:block;text-align:center;">Lead. Clear. Win.™</span>
-    <h2 class="sec-title reveal reveal-d1" style="text-align:center;">Stay Ahead of the<br>Leadership with AI Curve</h2>
+    <h2 class="sec-title reveal reveal-d1" style="text-align:center;color:var(--gold);">Lead<span style="color:var(--magenta);">&nbsp;•&nbsp;</span>Clarity<span style="color:var(--magenta);">&nbsp;•&nbsp;</span>Win Blog!</h2>
     <div class="divider center reveal reveal-d1"></div>
-    <p class="sec-sub reveal reveal-d2" style="text-align:center;margin-bottom:2rem;">Get weekly leadership and AI insights delivered straight to your inbox — practical, actionable, and built for leaders who want to stay ahead.</p>
+    <p class="reveal reveal-d2" style="text-align:center;font-family:'Inter',sans-serif;font-size:0.9rem;line-height:1.6;color:var(--navy-text);margin-bottom:2rem;"><strong style="font-size:1.05rem;">Stay Ahead of the Curve in Leadership with AI.</strong> Receive weekly insights on leadership and AI directly in your inbox — practical, actionable, and tailored for leaders aiming to maintain a competitive edge. <strong style="color:var(--gold);">Subscribe Now!</strong></p>
 
     <form id="nl-form" class="reveal reveal-d3" style="display:flex;flex-direction:column;gap:0.875rem;text-align:left;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.875rem;">
@@ -468,7 +467,7 @@
       </div>
       <input type="email" id="nl-email" placeholder="Email Address" required style="font-family:'Inter',sans-serif;font-size:0.85rem;padding:0.85rem 1rem;border-radius:6px;border:1px solid rgba(10,35,66,0.18);background:#fff;color:var(--navy);outline:none;">
       <input type="tel" id="nl-phone" placeholder="Phone Number" required style="font-family:'Inter',sans-serif;font-size:0.85rem;padding:0.85rem 1rem;border-radius:6px;border:1px solid rgba(10,35,66,0.18);background:#fff;color:var(--navy);outline:none;">
-      <button type="submit" id="nl-submit-btn" class="btn-mag" style="border:none;cursor:pointer;margin-top:0.25rem;">Subscribe Now</button>
+      <button type="submit" id="nl-submit-btn" class="btn-mag" style="border:none;cursor:pointer;margin-top:0.25rem;">Subscribe Now!</button>
       <p id="nl-status" style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--navy-text-muted);text-align:center;margin-top:0.25rem;display:none;"></p>
     </form>
   </div>
@@ -720,9 +719,9 @@
       </div>
     </div>
     <div class="footer-newsletter">
-      <h4>Lead. Clear. Win.™</h4>
+      <h4 style="color:var(--gold);">Lead<span style="color:var(--magenta);">&nbsp;•&nbsp;</span>Clarity<span style="color:var(--magenta);">&nbsp;•&nbsp;</span>Win Blog!</h4>
       <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.875rem;">Weekly leadership and AI insights in your inbox.</p>
-      <a href="#newsletter" style="font-family:'Montserrat',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold-border);border-radius:6px;padding:0.6rem 1.1rem;display:inline-block;">Subscribe →</a>
+      <a href="#newsletter" style="font-family:'Montserrat',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold-border);border-radius:6px;padding:0.6rem 1.1rem;display:inline-block;">Subscribe Now!</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -779,10 +778,10 @@
 
         if (res.ok) {
           nlForm.reset();
-          statusEl.textContent = "You're in! Welcome to Lead. Clear. Win.™";
+          statusEl.textContent = "You're in! Welcome to Lead • Clarity • Win Blog!";
           statusEl.style.color = "var(--gold)";
           statusEl.style.display = "block";
-          btn.textContent = "Subscribe Now";
+          btn.textContent = "Subscribe Now!";
         } else {
           throw new Error("Webhook failed");
         }
@@ -790,7 +789,7 @@
         statusEl.textContent = "Something went wrong — please try again.";
         statusEl.style.color = "var(--magenta)";
         statusEl.style.display = "block";
-        btn.textContent = "Subscribe Now";
+        btn.textContent = "Subscribe Now!";
       } finally {
         btn.disabled = false;
       }
