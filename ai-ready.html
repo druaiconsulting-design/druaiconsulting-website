@@ -14,6 +14,7 @@
     body { font-family: 'Inter', sans-serif; background: #FAFAF8; color: #0A2342; line-height: 1.7; -webkit-font-smoothing: antialiased; }
     :root {
       --navy: #0A2342;
+      --navy-nav: rgba(27,77,142,0.97);
       --gold: #D4AF37;
       --gold-border: rgba(212,175,55,0.35);
       --magenta: #C2185B;
@@ -26,11 +27,12 @@
     }
     .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* HEADER */
-    header { background: var(--navy); padding: 1rem 0; border-bottom: 2px solid var(--gold-border); }
+    /* HEADER — matches main site's nav treatment (text wordmark, not a squeezed logo image) */
+    header { background: var(--navy-nav); backdrop-filter: blur(12px); padding: 1rem 0; border-bottom: 1px solid var(--gold-border); }
     header .container { display: flex; align-items: center; justify-content: space-between; }
-    .header-logo { height: 42px; width: auto; }
-    .header-badge { font-family: 'Montserrat', sans-serif; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.3rem 0.75rem; border-radius: 2px; }
+    .header-wordmark { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--gold); letter-spacing: 0.02em; text-decoration: none; }
+    .header-badge { font-family: 'Montserrat', sans-serif; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.3rem 0.75rem; border-radius: 2px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .header-badge:hover { background: var(--gold); color: var(--navy); }
 
     /* MEET DEANNA */
     .meet-section { background: var(--warm-white); padding: 4rem 0 3.5rem; text-align: center; border-bottom: 1px solid var(--border-light); }
@@ -107,8 +109,8 @@
 
   <header>
     <div class="container">
-      <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/new-dru-clear-lightblue-logo.png" alt="DRU AI Consulting" class="header-logo" />
-      <span class="header-badge">Free Assessment</span>
+      <a href="/" class="header-wordmark">DRU AI Consulting</a>
+      <a href="https://assessment.druaiconsulting.com" class="header-badge">Free Assessment</a>
     </div>
   </header>
 
