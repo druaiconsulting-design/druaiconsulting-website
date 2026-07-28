@@ -27,20 +27,65 @@
     }
     .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* HEADER — matches main site's nav treatment (text wordmark, not a squeezed logo image) */
-    header { background: var(--navy-nav); backdrop-filter: blur(12px); padding: 1rem 0; border-bottom: 1px solid var(--gold-border); }
+    /* ── ANIMATION KEYFRAMES ─────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes growLine {
+      from { width: 0; }
+      to   { width: 60px; }
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.55; transform: translateX(-50%) scale(1); }
+      50%      { opacity: 0.9;  transform: translateX(-50%) scale(1.08); }
+    }
+    @keyframes shimmerSweep {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+    @keyframes bounceArrow {
+      0%, 100% { transform: translateX(0); }
+      50%      { transform: translateX(5px); }
+    }
+
+    /* Scroll-reveal base state — JS toggles .is-visible */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+    .reveal-d5 { transition-delay: 0.4s; }
+
+    /* HEADER */
+    header { background: var(--navy-nav); backdrop-filter: blur(12px); padding: 1rem 0; border-bottom: 1px solid var(--gold-border); animation: fadeIn 0.8s ease both; }
     header .container { display: flex; align-items: center; justify-content: space-between; }
-    .header-wordmark { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--gold); letter-spacing: 0.02em; text-decoration: none; }
-    .header-badge { font-family: 'Montserrat', sans-serif; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.3rem 0.75rem; border-radius: 2px; text-decoration: none; transition: background 0.2s, color 0.2s; }
-    .header-badge:hover { background: var(--gold); color: var(--navy); }
+    .header-wordmark { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--gold); letter-spacing: 0.02em; text-decoration: none; transition: letter-spacing 0.3s, color 0.3s; }
+    .header-wordmark:hover { letter-spacing: 0.05em; }
+    .header-badge { font-family: 'Montserrat', sans-serif; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.3rem 0.75rem; border-radius: 2px; text-decoration: none; transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s; }
+    .header-badge:hover { background: var(--gold); color: var(--navy); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(212,175,55,0.35); }
 
     /* MEET DEANNA */
     .meet-section { background: var(--warm-white); padding: 4rem 0 3.5rem; text-align: center; border-bottom: 1px solid var(--border-light); }
-    .photo-frame { max-width: 320px; border: 3px solid var(--gold); box-shadow: 0 8px 32px rgba(10,35,66,0.12); overflow: hidden; margin: 0 auto 1.5rem; border-radius: 8px; }
+    .photo-frame { max-width: 320px; border: 3px solid var(--gold); box-shadow: 0 8px 32px rgba(10,35,66,0.12); overflow: hidden; margin: 0 auto 1.5rem; border-radius: 8px; animation: scaleIn 0.9s cubic-bezier(0.22,1,0.36,1) both, floatY 5s ease-in-out 0.9s infinite; transition: box-shadow 0.4s, transform 0.4s; }
+    .photo-frame:hover { box-shadow: 0 12px 44px rgba(212,175,55,0.28); transform: translateY(-4px); }
     .photo-frame img { width: 100%; height: auto; display: block; }
     .meet-name { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 4vw, 2.4rem); font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; }
     .meet-role { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--magenta); margin-bottom: 1.25rem; }
-    .gold-divider { width: 60px; height: 2px; background: var(--gold); margin: 0 auto 1.25rem; border-radius: 1px; }
+    .gold-divider { height: 2px; background: var(--gold); margin: 0 auto 1.25rem; border-radius: 1px; animation: growLine 1s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
 
     /* TAGLINE */
     .meet-tagline { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.6rem; }
@@ -51,13 +96,20 @@
 
     /* HERO */
     .hero { background: var(--navy); padding: 4.5rem 0; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 900px; height: 400px; background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.09) 0%, transparent 70%); pointer-events: none; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 50%; width: 900px; height: 400px; background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.09) 0%, transparent 70%); pointer-events: none; animation: glowPulse 6s ease-in-out infinite; }
     .eyebrow { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 800; line-height: 1.2; color: #FAFAF8; max-width: 760px; margin: 0 auto 1.4rem; }
-    .hero h1 em { color: var(--gold); font-style: italic; }
-    .hero-sub { font-size: 1rem; color: rgba(250,250,248,0.72); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.75; }
-    .btn-primary { display: inline-block; background: var(--magenta); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 1rem 2.5rem; border-radius: 3px; text-decoration: none; transition: background 0.2s, transform 0.15s; }
-    .btn-primary:hover { background: var(--magenta-hover); transform: translateY(-2px); }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 800; line-height: 1.2; color: #FAFAF8; max-width: 760px; margin: 0 auto 1.4rem; position: relative; z-index: 1; }
+    .hero h1 em {
+      color: var(--gold); font-style: italic;
+      background: linear-gradient(90deg, var(--gold) 0%, #f5e6a8 25%, var(--gold) 50%, #f5e6a8 75%, var(--gold) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: shimmerSweep 4s linear infinite;
+    }
+    .hero-sub { font-size: 1rem; color: rgba(250,250,248,0.72); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.75; position: relative; z-index: 1; }
+    .btn-primary { display: inline-block; background: var(--magenta); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 1rem 2.5rem; border-radius: 3px; text-decoration: none; transition: background 0.25s, transform 0.25s, box-shadow 0.25s; position: relative; z-index: 1; }
+    .btn-primary:hover { background: var(--magenta-hover); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(194,24,91,0.4); }
+    .btn-primary .arrow { display: inline-block; animation: bounceArrow 1.4s ease-in-out infinite; }
     .gold-rule { border: none; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
 
     /* CLEAR SECTION */
@@ -66,10 +118,11 @@
     .section-heading { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw, 2.1rem); font-weight: 700; text-align: center; color: var(--navy); margin-bottom: 0.85rem; line-height: 1.3; }
     .section-sub { text-align: center; color: var(--text-secondary); font-size: 0.93rem; max-width: 520px; margin: 0 auto; }
     .clear-stack { border: 1px solid var(--border-light); border-radius: 6px; overflow: hidden; margin-top: 3rem; box-shadow: 0 2px 20px rgba(10,35,66,0.06); }
-    .clear-row { display: flex; align-items: stretch; background: #fff; transition: background 0.2s; }
-    .clear-row:hover { background: #FFFDF5; }
+    .clear-row { display: flex; align-items: stretch; background: #fff; transition: background 0.3s, transform 0.3s, box-shadow 0.3s; position: relative; z-index: 0; }
+    .clear-row:hover { background: #FFFDF5; transform: scale(1.012); box-shadow: 0 6px 24px rgba(10,35,66,0.08); z-index: 1; }
     .clear-row + .clear-row { border-top: 1px solid var(--border-light); }
-    .clear-letter { flex: 0 0 80px; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 2.25rem; font-weight: 700; color: var(--gold); background: var(--navy); border-right: 1px solid rgba(212,175,55,0.25); padding: 1.5rem 1rem; }
+    .clear-letter { flex: 0 0 80px; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 2.25rem; font-weight: 700; color: var(--gold); background: var(--navy); border-right: 1px solid rgba(212,175,55,0.25); padding: 1.5rem 1rem; transition: background 0.3s, color 0.3s; }
+    .clear-row:hover .clear-letter { background: var(--gold); color: var(--navy); }
     .clear-content { flex: 1; padding: 1.5rem 1.75rem; }
     .clear-pillar { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--magenta); margin-bottom: 0.3rem; }
     .clear-name { font-family: 'Playfair Display', serif; font-size: 1.02rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
@@ -80,19 +133,27 @@
     /* BENEFITS */
     .benefits-section { padding: 5rem 0; background: var(--off-white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
     .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; margin-top: 3rem; }
-    .benefit-card { border: 1px solid var(--border-light); border-radius: 6px; padding: 1.75rem; background: #fff; box-shadow: 0 1px 8px rgba(10,35,66,0.05); }
+    .benefit-card { border: 1px solid var(--border-light); border-radius: 6px; padding: 1.75rem; background: #fff; box-shadow: 0 1px 8px rgba(10,35,66,0.05); transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+    .benefit-card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(10,35,66,0.12); border-color: var(--gold-border); }
     .benefit-num { font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 0.85rem; display: block; }
     .benefit-title { font-family: 'Montserrat', sans-serif; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.45rem; }
     .benefit-text { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.65; }
 
     /* FINAL CTA */
-    .final-cta { padding: 5rem 0; text-align: center; background: var(--navy); border-top: 2px solid var(--gold-border); }
-    .final-cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; color: #FAFAF8; margin-bottom: 1rem; line-height: 1.3; }
-    .final-cta p { color: rgba(250,250,248,0.7); font-size: 1rem; max-width: 480px; margin: 0 auto 2.25rem; }
+    .final-cta { padding: 5rem 0; text-align: center; background: var(--navy); border-top: 2px solid var(--gold-border); position: relative; overflow: hidden; }
+    .final-cta::before { content: ''; position: absolute; top: 0; left: 50%; width: 700px; height: 350px; background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.07) 0%, transparent 70%); pointer-events: none; animation: glowPulse 7s ease-in-out infinite; }
+    .final-cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; color: #FAFAF8; margin-bottom: 1rem; line-height: 1.3; position: relative; z-index: 1; }
+    .final-cta p { color: rgba(250,250,248,0.7); font-size: 1rem; max-width: 480px; margin: 0 auto 2.25rem; position: relative; z-index: 1; }
+    .final-cta .btn-primary { position: relative; z-index: 1; }
 
     /* FOOTER */
     footer { padding: 1.5rem 0; background: var(--navy); border-top: 1px solid rgba(212,175,55,0.15); text-align: center; }
     footer p { font-size: 0.73rem; color: rgba(250,250,248,0.32); font-family: 'Montserrat', sans-serif; letter-spacing: 0.04em; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
 
     @media (max-width: 620px) {
       .clear-letter { flex: 0 0 54px; font-size: 1.65rem; padding: 1.25rem 0.6rem; }
@@ -115,21 +176,21 @@
       <div class="photo-frame">
         <img src="https://raw.githubusercontent.com/druaiconsulting-design/druaiconsulting-website/main/deanna-headshot.jpg" alt="DeAnna R. Upshaw" />
       </div>
-      <h1 class="meet-name">DeAnna R. Upshaw</h1>
-      <p class="meet-role">AI Authority &nbsp;·&nbsp; CEO, DRU AI Consulting</p>
+      <h1 class="meet-name reveal">DeAnna R. Upshaw</h1>
+      <p class="meet-role reveal reveal-d1">AI Authority &nbsp;·&nbsp; CEO, DRU AI Consulting</p>
       <div class="gold-divider"></div>
-      <p class="meet-tagline">Leadership Clarity <span>·</span> AI Mastery <span>·</span> Measurable Results</p>
-      <p class="meet-cert">Certified DISC Consultant</p>
-      <p class="meet-quote">"Every leader I work with is talking about AI — but very few have actually mapped their readiness. That gap is expensive. I built the DRU CLEAR™ Assessment to change that conversation, starting with the truth about where you stand today."</p>
+      <p class="meet-tagline reveal reveal-d2">Leadership Clarity <span>·</span> AI Mastery <span>·</span> Measurable Results</p>
+      <p class="meet-cert reveal reveal-d3">Certified DISC Consultant</p>
+      <p class="meet-quote reveal reveal-d4">"Every leader I work with is talking about AI — but very few have actually mapped their readiness. That gap is expensive. I built the DRU CLEAR™ Assessment to change that conversation, starting with the truth about where you stand today."</p>
     </div>
   </section>
 
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">DRU CLEAR™ AI Readiness Assessment</p>
-      <h1>AI Is Everywhere!<br />Is Your Organization <em>Ready</em> to Lead With It?</h1>
-      <p class="hero-sub">Are you aware of your current standing in AI education? The complimentary DRU CLEAR™ Assessment provides insights into potential gaps across five essential pillars in a brief 3-minute evaluation, with instant results.</p>
-      <a href="https://assessment.druaiconsulting.com" class="btn-primary">Start My Free Assessment →</a>
+      <p class="eyebrow reveal">DRU CLEAR™ AI Readiness Assessment</p>
+      <h1 class="reveal reveal-d1">AI Is Everywhere!<br />Is Your Organization <em>Ready</em> to Lead With It?</h1>
+      <p class="hero-sub reveal reveal-d2">Are you aware of your current standing in AI education? The complimentary DRU CLEAR™ Assessment provides insights into potential gaps across five essential pillars in a brief 3-minute evaluation, with instant results.</p>
+      <a href="https://assessment.druaiconsulting.com" class="btn-primary reveal reveal-d3">Start My Free Assessment <span class="arrow">→</span></a>
     </div>
   </section>
 
@@ -137,10 +198,10 @@
 
   <section class="clear-section">
     <div class="container">
-      <p class="section-eyebrow">The DRU CLEAR™ Framework</p>
-      <h2 class="section-heading">5 Questions Every Leader Must Address Immediately</h2>
+      <p class="section-eyebrow reveal">The DRU CLEAR™ Framework</p>
+      <h2 class="section-heading reveal reveal-d1">5 Questions Every Leader Must Address Immediately</h2>
       <div class="clear-stack">
-        <div class="clear-row">
+        <div class="clear-row reveal">
           <div class="clear-letter">C</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 1</p>
@@ -148,7 +209,7 @@
             <p class="clear-question">Do you have a documented AI vision that is directly tied to your business strategy?</p>
           </div>
         </div>
-        <div class="clear-row">
+        <div class="clear-row reveal reveal-d1">
           <div class="clear-letter">L</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 2</p>
@@ -156,7 +217,7 @@
             <p class="clear-question">What AI learning development initiatives have you implemented within your team to advance the organization?</p>
           </div>
         </div>
-        <div class="clear-row">
+        <div class="clear-row reveal reveal-d2">
           <div class="clear-letter">E</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 3</p>
@@ -164,7 +225,7 @@
             <p class="clear-question">Identify the AI skills, tools, and resources that your team has implemented within the past 12 months.</p>
           </div>
         </div>
-        <div class="clear-row">
+        <div class="clear-row reveal reveal-d3">
           <div class="clear-letter">A</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 4</p>
@@ -172,7 +233,7 @@
             <p class="clear-question">Can you explain the method of communication utilized to convey consistent AI priorities and progress?</p>
           </div>
         </div>
-        <div class="clear-row">
+        <div class="clear-row reveal reveal-d4">
           <div class="clear-letter">R</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 5</p>
@@ -181,27 +242,27 @@
           </div>
         </div>
       </div>
-      <p class="clear-close">Each pillar is created to assess your current AI readiness and guide you toward future possibilities.</p>
+      <p class="clear-close reveal">Each pillar is created to assess your current AI readiness and guide you toward future possibilities.</p>
     </div>
   </section>
 
   <section class="benefits-section">
     <div class="container">
-      <p class="section-eyebrow">What You'll Receive</p>
-      <h2 class="section-heading">Your Complete AI Readiness Picture</h2>
-      <p class="section-sub">Clarification concerning your current position and the subsequent steps to move forward.</p>
+      <p class="section-eyebrow reveal">What You'll Receive</p>
+      <h2 class="section-heading reveal reveal-d1">Your Complete AI Readiness Picture</h2>
+      <p class="section-sub reveal reveal-d2">Clarification concerning your current position and the subsequent steps to move forward.</p>
       <div class="benefits-grid">
-        <div class="benefit-card">
+        <div class="benefit-card reveal">
           <span class="benefit-num">01</span>
           <p class="benefit-title">Your DRU CLEAR™ Score</p>
           <p class="benefit-text">A personalized AI Readiness score across all 5 CLEAR pillars — delivered instantly the moment you finish.</p>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card reveal reveal-d1">
           <span class="benefit-num">02</span>
           <p class="benefit-title">Pillar-by-Pillar Breakdown</p>
           <p class="benefit-text">See exactly where your organization is strong and where the gaps are — so you know precisely what to address first.</p>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card reveal reveal-d2">
           <span class="benefit-num">03</span>
           <p class="benefit-title">A Clear Path Forward</p>
           <p class="benefit-text">Personalized next-step guidance based on your actual results — not a generic report, but direction built for where you are right now.</p>
@@ -212,9 +273,9 @@
 
   <section class="final-cta">
     <div class="container">
-      <h2>Know Where You Stand.<br />Lead With Confidence.</h2>
-      <p>The DRU CLEAR™ AI Readiness Assessment is free, takes 3 minutes, and gives you a score you can actually act on.</p>
-      <a href="https://assessment.druaiconsulting.com" class="btn-primary">Start My Free Assessment →</a>
+      <h2 class="reveal">Know Where You Stand.<br />Lead With Confidence.</h2>
+      <p class="reveal reveal-d1">The DRU CLEAR™ AI Readiness Assessment is free, takes 3 minutes, and gives you a score you can actually act on.</p>
+      <a href="https://assessment.druaiconsulting.com" class="btn-primary reveal reveal-d2">Start My Free Assessment <span class="arrow">→</span></a>
     </div>
   </section>
 
@@ -223,6 +284,25 @@
       <p>© 2026 Dimensional Solns, LLC &nbsp;·&nbsp; DRU AI Consulting &nbsp;·&nbsp; DRU CLEAR™ is a proprietary framework</p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      els.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
 
 </body>
 </html>
