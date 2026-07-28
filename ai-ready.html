@@ -70,6 +70,12 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.4s; }
 
+    /* Fly-in — CLEAR pillar rows enter from alternating sides */
+    .fly-left, .fly-right { opacity: 0; transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .fly-left { transform: translateX(-70px); }
+    .fly-right { transform: translateX(70px); }
+    .fly-left.is-visible, .fly-right.is-visible { opacity: 1; transform: translateX(0); }
+
     /* HEADER */
     header { background: var(--navy-nav); backdrop-filter: blur(12px); padding: 1rem 0; border-bottom: 1px solid var(--gold-border); animation: fadeIn 0.8s ease both; }
     header .container { display: flex; align-items: center; justify-content: space-between; }
@@ -201,7 +207,7 @@
       <p class="section-eyebrow reveal">The DRU CLEAR™ Framework</p>
       <h2 class="section-heading reveal reveal-d1">5 Questions Every Leader Must Address Immediately</h2>
       <div class="clear-stack">
-        <div class="clear-row reveal">
+        <div class="clear-row fly-left">
           <div class="clear-letter">C</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 1</p>
@@ -209,7 +215,7 @@
             <p class="clear-question">Do you have a documented AI vision that is directly tied to your business strategy?</p>
           </div>
         </div>
-        <div class="clear-row reveal reveal-d1">
+        <div class="clear-row fly-right">
           <div class="clear-letter">L</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 2</p>
@@ -217,7 +223,7 @@
             <p class="clear-question">What AI learning development initiatives have you implemented within your team to advance the organization?</p>
           </div>
         </div>
-        <div class="clear-row reveal reveal-d2">
+        <div class="clear-row fly-left">
           <div class="clear-letter">E</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 3</p>
@@ -225,7 +231,7 @@
             <p class="clear-question">Identify the AI skills, tools, and resources that your team has implemented within the past 12 months.</p>
           </div>
         </div>
-        <div class="clear-row reveal reveal-d3">
+        <div class="clear-row fly-right">
           <div class="clear-letter">A</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 4</p>
@@ -233,7 +239,7 @@
             <p class="clear-question">Can you explain the method of communication utilized to convey consistent AI priorities and progress?</p>
           </div>
         </div>
-        <div class="clear-row reveal reveal-d4">
+        <div class="clear-row fly-left">
           <div class="clear-letter">R</div>
           <div class="clear-content">
             <p class="clear-pillar">Pillar 5</p>
@@ -287,7 +293,7 @@
 
   <script>
     (function () {
-      var els = document.querySelectorAll('.reveal');
+      var els = document.querySelectorAll('.reveal, .fly-left, .fly-right');
       if (!('IntersectionObserver' in window)) {
         els.forEach(function (el) { el.classList.add('is-visible'); });
         return;
