@@ -782,6 +782,15 @@
           statusEl.style.color = "var(--gold)";
           statusEl.style.display = "block";
           btn.textContent = "Subscribe Now!";
+
+          // Tags this signup as non-member and starts Jaylen's 5-email welcome sequence
+          // (Aug 2026). Fire-and-forget — never blocks or affects the signup confirmation
+          // above, which already succeeded via the GHL webhook.
+          fetch("https://app.druaiconsulting.com/api/jaylen-nonmember-signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, first_name: firstName, last_name: lastName })
+          }).catch(() => {});
         } else {
           throw new Error("Webhook failed");
         }
