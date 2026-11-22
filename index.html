@@ -929,7 +929,7 @@
   // ── Inject styles ──────────────────────────────────────────────────────────
   const style = document.createElement('style');
   style.textContent = `
-    #dru-chat-btn { position:fixed; bottom:24px; right:24px; width:56px; height:56px; border-radius:50%; background:${NAVY}; border:2px solid ${GOLD}; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:9998; box-shadow:0 4px 20px rgba(0,0,0,0.3); transition:transform 0.2s; }
+    #dru-chat-btn { position:fixed; bottom:24px; right:24px; width:56px; height:56px; border-radius:50%; background:${NAVY}; border:2px solid ${GOLD}; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:9998; box-shadow:0 4px 20px rgba(0,0,0,0.3); transition:transform 0.2s; touch-action:none; user-select:none; -webkit-user-select:none; }
     #dru-chat-btn:hover { transform:scale(1.08); }
     #dru-chat-btn.dru-pill { width:auto; padding:0 22px 0 0; border-radius:28px; gap:12px; justify-content:flex-start; }
     #dru-chat-btn.dru-pill img { width:52px; height:52px; border-radius:50%; object-fit:cover; flex-shrink:0; }
@@ -1191,9 +1191,92 @@
     win.classList.toggle('hidden', !state.open);
     setBtn();
     if (state.open) render();
+    placeWindow();
   }
 
-  btn.addEventListener('click', toggle);
+  // ── Move the chat button ───────────────────────────────────────────────────
+  // Press and drag the button anywhere on the screen so it never covers the page's links.
+  // A plain click still opens the chat. The chat window opens beside wherever the button is.
+  // The button returns to its corner when the page is reloaded.
+  let moved = false;
+  let dragging = false;
+  let suppressClick = false;
+  let dragStart = null;
+
+  function placeWindow() {
+    if (!moved) {
+      win.style.left = ''; win.style.right = ''; win.style.top = ''; win.style.bottom = ''; win.style.maxHeight = '';
+      return;
+    }
+    const b = btn.getBoundingClientRect();
+    const w = win.offsetWidth || 360;
+    const above = b.top - 16;
+    const below = window.innerHeight - b.bottom - 16;
+    const left = Math.min(Math.max(8, b.right - w), Math.max(8, window.innerWidth - w - 8));
+    win.style.left = left + 'px';
+    win.style.right = 'auto';
+    if (above >= 320 || above >= below) {
+      win.style.top = 'auto';
+      win.style.bottom = (window.innerHeight - b.top + 8) + 'px';
+      win.style.maxHeight = Math.max(200, Math.min(580, above)) + 'px';
+    } else {
+      win.style.bottom = 'auto';
+      win.style.top = (b.bottom + 8) + 'px';
+      win.style.maxHeight = Math.max(200, Math.min(580, below)) + 'px';
+    }
+  }
+
+  function moveBtnTo(left, top) {
+    const r = btn.getBoundingClientRect();
+    btn.style.left = Math.min(Math.max(0, left), Math.max(0, window.innerWidth - r.width)) + 'px';
+    btn.style.top = Math.min(Math.max(0, top), Math.max(0, window.innerHeight - r.height)) + 'px';
+    btn.style.right = 'auto';
+    btn.style.bottom = 'auto';
+  }
+
+  btn.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    const r = btn.getBoundingClientRect();
+    dragStart = { x: e.clientX, y: e.clientY, left: r.left, top: r.top };
+    dragging = false;
+    try { btn.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+
+  btn.addEventListener('pointermove', e => {
+    if (!dragStart) return;
+    const dx = e.clientX - dragStart.x;
+    const dy = e.clientY - dragStart.y;
+    if (!dragging && Math.hypot(dx, dy) < 6) return;
+    dragging = true;
+    moved = true;
+    moveBtnTo(dragStart.left + dx, dragStart.top + dy);
+    placeWindow();
+  });
+
+  function endDrag(e) {
+    if (!dragStart) return;
+    if (dragging) {
+      suppressClick = true;
+      setTimeout(() => { suppressClick = false; }, 0);
+    }
+    dragStart = null;
+    dragging = false;
+    try { btn.releasePointerCapture(e.pointerId); } catch (err) {}
+  }
+  btn.addEventListener('pointerup', endDrag);
+  btn.addEventListener('pointercancel', endDrag);
+
+  window.addEventListener('resize', () => {
+    if (!moved) return;
+    const r = btn.getBoundingClientRect();
+    moveBtnTo(r.left, r.top);
+    placeWindow();
+  });
+
+  btn.addEventListener('click', () => {
+    if (suppressClick) return;
+    toggle();
+  });
 })();
 
 </script>
